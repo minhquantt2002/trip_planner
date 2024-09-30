@@ -1,19 +1,19 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
+import { CreateTripContext } from '../context/CreateTripContext';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { useEffect, useState } from 'react';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    'Inter-Thin': require('../assets/fonts/Inter_18pt-Thin.ttf'),
+    'Inter-Regular': require('../assets/fonts/Inter_18pt-Regular.ttf'),
+    'Inter-Bold': require('../assets/fonts/Inter_18pt-Bold.ttf'),
+    'Inter-Medium': require('../assets/fonts/Inter_18pt-Medium.ttf'),
+    'Inter-ExtraBold': require('../assets/fonts/Inter_18pt-ExtraBold.ttf'),
+    'Inter-SemiBold': require('../assets/fonts/Inter_18pt-SemiBold.ttf'),
   });
 
   useEffect(() => {
@@ -26,12 +26,15 @@ export default function RootLayout() {
     return null;
   }
 
+  // const [tripData, setTripData] = useState([]);
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    // <CreateTripContext.Provider value={{ tripData, setTripData }}>
+    <Stack>
+      <Stack.Screen name='index' options={{ headerShown: false }} />
+      <Stack.Screen name='(auth)' options={{ headerShown: false }} />
+      <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+      <Stack.Screen name='+not-found' />
+    </Stack>
+    // </CreateTripContext.Provider>
   );
 }
