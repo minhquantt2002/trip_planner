@@ -8,17 +8,21 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { ThemedView } from '@/components/ThemedView';
+import React from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HEADER_HEIGHT = 250;
 
 interface CustomScrollViewProps {
   headerImage?: ReactElement;
-  headerBackgroundColor: { dark: string; light: string };
-  children?: ReactNode | undefined;
+  headerBackgroundColor?: { dark: string; light: string };
+  children: ReactNode;
 }
 
-interface HeaderImageProps extends CustomScrollViewProps {
+interface HeaderImageProps {
   scrollRef: any;
+  headerImage?: ReactElement;
+  headerBackgroundColor?: { dark: string; light: string };
 }
 
 const HeaderImage = ({
@@ -53,7 +57,7 @@ const HeaderImage = ({
     <Animated.View
       style={[
         styles.header,
-        { backgroundColor: headerBackgroundColor[colorScheme] },
+        { backgroundColor: headerBackgroundColor?.[colorScheme] },
         headerAnimatedStyle,
       ]}
     >
@@ -62,15 +66,15 @@ const HeaderImage = ({
   );
 };
 
-export default function CustomScrollView({
-  children,
+const CustomScrollView = ({
   headerImage,
   headerBackgroundColor,
-}: CustomScrollViewProps) {
+  children,
+}: CustomScrollViewProps) => {
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
 
   return (
-    <ThemedView style={styles.container}>
+    <SafeAreaView>
       <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
         {headerImage && (
           <HeaderImage
@@ -79,24 +83,17 @@ export default function CustomScrollView({
             headerImage={headerImage}
           />
         )}
-        <ThemedView style={styles.content}>{children}</ThemedView>
+        <ThemedView>{children}</ThemedView>
       </Animated.ScrollView>
-    </ThemedView>
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   header: {
     height: 250,
     overflow: 'hidden',
   },
-  content: {
-    flex: 1,
-    padding: 32,
-    gap: 16,
-    overflow: 'hidden',
-  },
 });
+
+export default CustomScrollView;

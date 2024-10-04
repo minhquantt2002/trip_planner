@@ -1,26 +1,16 @@
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  StatusBar,
-  ToastAndroid,
-} from 'react-native';
-import React, { useState } from 'react';
-import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-// import { LinearGradient } from 'expo-linear-gradient';
-// import { createUserWithEmailAndPassword } from 'firebase/auth';
-// import { auth } from '../../configs/firebaseConfig';
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import React, { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import TextField from "@/components/TextField";
+import Button from "@/components/Button";
+import { images } from "@/constants/images";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SignUp() {
-  const router = useRouter();
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
 
   const onCreateAccount = () => {
     // if (!email && !password && !fullName) {
@@ -43,144 +33,36 @@ export default function SignUp() {
     //   });
   };
   return (
-    // <LinearGradient
-    //   colors={['#4c669f', '#3b5998', '#192f6a']}
-    //   style={styles.container}
-    // >
-    <>
-      <StatusBar translucent backgroundColor='transparent' />
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => router.push('/(auth)/sign-in')}
-        >
-          <Ionicons name='arrow-back-outline' size={30} color='white' />
-        </TouchableOpacity>
+    <SafeAreaView className="bg-white">
+      <View className="flex min-h-screen w-full flex-col items-center">
+        <Image source={images.Logo} />
+        <Text className="my-4 font-InterMedium text-2xl">
+          Create an account
+        </Text>
+        <Text className="text-md w-8/12 text-center font-InterRegular">
+          Fill your information below or register with your social account
+        </Text>
 
-        <Text style={styles.title}>Create New Account</Text>
-
-        <View style={styles.formContainer}>
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Full Name</Text>
-            <TextInput
-              style={styles.input}
-              placeholder='Enter Full Name'
-              placeholderTextColor='#a0a0a0'
-              onChangeText={(val) => console.log(val)}
-            />
-          </View>
-
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Email</Text>
-            <TextInput
-              style={styles.input}
-              placeholder='Enter Email'
-              placeholderTextColor='#a0a0a0'
-              keyboardType='email-address'
-              onChangeText={(val) => setEmail(val)}
-            />
-          </View>
-
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Password</Text>
-            <TextInput
-              secureTextEntry={true}
-              style={styles.input}
-              placeholder='Enter Password'
-              placeholderTextColor='#a0a0a0'
-              onChangeText={(val) => setPassword(val)}
-            />
-          </View>
-
+        <View className="mb-2 mt-6 w-[92%] rounded-2xl py-4">
+          <TextField label="First Name" />
+          <TextField label="Last Name" />
+          <TextField label="Email" />
+          <TextField label="Password" secureTextEntry={true} />
+          <Button title="Sign in" className="mt-6" />
+        </View>
+        <View className="flex flex-row items-center justify-center">
+          <Text className="font-InterRegular text-gray-500">
+            Do you have an account?{" "}
+          </Text>
           <TouchableOpacity
-            style={styles.createAccountButton}
-            onPress={onCreateAccount}
+            onPress={() => {
+              router.replace("/(auth)/sign-in");
+            }}
           >
-            <Text style={styles.createAccountButtonText}>Create Account</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.signInButton}
-            onPress={() => router.replace('/(auth)/sign-in')}
-          >
-            <Text style={styles.signInButtonText}>Sign In</Text>
+            <Text className="text-primary font-InterMedium">Sign in</Text>
           </TouchableOpacity>
         </View>
-      </ScrollView>
-    </>
-    // </LinearGradient>
+      </View>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollViewContent: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    padding: 25,
-    paddingTop: 20,
-  },
-  backButton: {
-    position: 'absolute',
-    top: 20,
-    left: 25,
-  },
-  title: {
-    fontFamily: 'outfit-bold',
-    fontSize: 28,
-    textAlign: 'center',
-    marginBottom: 30,
-    color: 'white',
-  },
-  formContainer: {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    borderRadius: 20,
-    padding: 20,
-  },
-  inputContainer: {
-    marginBottom: 20,
-  },
-  label: {
-    fontFamily: 'outfit',
-    fontSize: 16,
-    color: 'white',
-    marginBottom: 5,
-  },
-  input: {
-    padding: 12,
-    borderRadius: 10,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    fontFamily: 'outfit',
-    fontSize: 16,
-    color: 'white',
-  },
-  createAccountButton: {
-    padding: 16,
-    backgroundColor: '#ff6347',
-    borderRadius: 25,
-    marginTop: 30,
-    elevation: 5,
-  },
-  createAccountButtonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontFamily: 'outfit-bold',
-    fontSize: 18,
-  },
-  signInButton: {
-    padding: 16,
-    backgroundColor: 'transparent',
-    borderRadius: 25,
-    marginTop: 15,
-    borderWidth: 1,
-    borderColor: 'white',
-  },
-  signInButtonText: {
-    textAlign: 'center',
-    fontFamily: 'outfit-bold',
-    fontSize: 18,
-    color: 'white',
-  },
-});
