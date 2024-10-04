@@ -7,7 +7,7 @@ import Button from "@/components/Button";
 import { images } from "@/constants/images";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function SignUp() {
+const SignUpScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
@@ -48,7 +48,7 @@ export default function SignUp() {
           <TextField label="Last Name" />
           <TextField label="Email" />
           <TextField label="Password" secureTextEntry={true} />
-          <Button title="Sign in" className="mt-6" />
+          <Button title="Sign up" className="mt-6" />
         </View>
         <View className="flex flex-row items-center justify-center">
           <Text className="font-InterRegular text-gray-500">
@@ -59,10 +59,12 @@ export default function SignUp() {
               router.replace("/(auth)/sign-in");
             }}
           >
-            <Text className="text-primary font-InterMedium">Sign in</Text>
+            <Text className="font-InterMedium text-primary">Sign in</Text>
           </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
   );
-}
+};
+
+export default SignUpScreen;

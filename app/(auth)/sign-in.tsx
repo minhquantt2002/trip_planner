@@ -12,7 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "@/constants/images";
 import { router } from "expo-router";
 
-export default function SignIn() {
+const SignInScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -74,4 +74,6 @@ export default function SignIn() {
       </View>
     </SafeAreaView>
   );
-}
+};
+
+export default SignInScreen;
