@@ -1,11 +1,118 @@
-import { Stack, Tabs } from "expo-router";
+import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { router, Stack, Tabs } from "expo-router";
 import React from "react";
+import { Platform, Text, TouchableOpacity, View } from "react-native";
 
 const TabLayout = () => {
   return (
-    <Stack>
-      <Stack.Screen name="trip" options={{ headerShown: false }} />
-    </Stack>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "#FFC600",
+        tabBarInactiveTintColor: "#A9A9A9",
+        tabBarStyle: {
+          backgroundColor: "#000000",
+          ...(Platform.OS === "ios"
+            ? { paddingTop: 4, height: 82 }
+            : { paddingTop: 6, height: 56 }),
+        },
+        header: () => null,
+      }}
+    >
+      <Tabs.Screen
+        name="trip"
+        options={{
+          title: "Trips",
+          tabBarLabel: ({ children, focused }) => (
+            <Text
+              className={`${focused ? "text-primaryColor" : "text-white"} font-InterMedium`}
+            >
+              {children}
+            </Text>
+          ),
+          tabBarIcon: ({ focused }) => (
+            <MaterialIcons
+              name="work"
+              size={focused ? 32 : 26}
+              color={focused ? "#FFC600" : "#FFFFFF"}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="alert"
+        options={{
+          title: "Alert",
+          tabBarLabel: ({ children, focused }) => (
+            <Text
+              className={`${focused ? "text-primaryColor" : "text-white"} font-InterMedium`}
+            >
+              {children}
+            </Text>
+          ),
+          tabBarIcon: ({ focused }) => (
+            <MaterialIcons
+              name="notifications"
+              size={focused ? 32 : 26}
+              color={focused ? "#FFC600" : "#FFFFFF"}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="(trip)"
+        redirect={false}
+        options={{
+          tabBarButton: () => (
+            <TouchableOpacity
+              onPress={() => router.replace("/(tabs)/alert")}
+              className="bg-primaryColor mx-4 h-12 w-12 items-center justify-center rounded-full"
+            >
+              <MaterialCommunityIcons name="plus" size={48} color="#ffffff" />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="collection"
+        options={{
+          title: "Save",
+          tabBarLabel: ({ children, focused }) => (
+            <Text
+              className={`${focused ? "text-primaryColor" : "text-white"} font-InterMedium`}
+            >
+              {children}
+            </Text>
+          ),
+          tabBarIcon: ({ focused }) => (
+            <MaterialIcons
+              name="bookmark"
+              size={focused ? 32 : 26}
+              color={focused ? "#FFC600" : "#FFFFFF"}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          tabBarLabel: ({ children, focused }) => (
+            <Text
+              className={`${focused ? "text-primaryColor" : "text-white"} font-InterMedium`}
+            >
+              {children}
+            </Text>
+          ),
+          tabBarIcon: ({ focused }) => (
+            <MaterialIcons
+              name="person"
+              size={focused ? 32 : 26}
+              color={focused ? "#FFC600" : "#FFFFFF"}
+            />
+          ),
+        }}
+      />
+    </Tabs>
   );
 };
 

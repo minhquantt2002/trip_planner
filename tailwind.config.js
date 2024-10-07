@@ -12,7 +12,9 @@ module.exports = {
         InterSemiBold: ["Inter-SemiBold", "sans-serif"],
       },
       colors: {
-        primary: "#FFC600",
+        primaryColor: "#FFC600",
+        activeColor: "#159EFE",
+        inactiveColor: "#A8A8A8",
       },
     },
   },

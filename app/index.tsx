@@ -1,5 +1,8 @@
 import { Redirect } from "expo-router";
 
-export default function MainPage() {
+const MainPage = () => {
   return <Redirect href={"/(tabs)/trip"} />;
-}
+  // return <Redirect href={"/(auth)/welcome"} />;
+};
+
+export default MainPage;
