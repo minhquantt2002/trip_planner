@@ -19,7 +19,7 @@ const TabLayout = () => {
       }}
     >
       <Tabs.Screen
-        name="trip"
+        name="(trip)"
         options={{
           title: "Trips",
           tabBarLabel: ({ children, focused }) => (
@@ -59,21 +59,19 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="(trip)"
-        redirect={false}
+        name="create-trip-redirect"
         options={{
-          tabBarButton: () => (
-            <TouchableOpacity
-              onPress={() => router.replace("/(tabs)/alert")}
-              className="bg-primaryColor mx-4 h-12 w-12 items-center justify-center rounded-full"
-            >
-              <MaterialCommunityIcons name="plus" size={48} color="#ffffff" />
+          tabBarButton: ({ ...props }) => (
+            <TouchableOpacity {...props}>
+              <View className="h-12 w-12 items-center justify-center rounded-full bg-primaryColor">
+                <MaterialCommunityIcons name="plus" size={48} color="#ffffff" />
+              </View>
             </TouchableOpacity>
           ),
         }}
       />
       <Tabs.Screen
-        name="collection"
+        name="(collection)"
         options={{
           title: "Save",
           tabBarLabel: ({ children, focused }) => (
@@ -93,7 +91,7 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="(profile)"
         options={{
           title: "Profile",
           tabBarLabel: ({ children, focused }) => (

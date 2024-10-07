@@ -1,4 +1,3 @@
-import TabBar from "@/components/TabBar";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -10,8 +9,6 @@ const AlertScreen = () => {
           <Text>Alert</Text>
         </View>
       </ScrollView>
-
-      <TabBar visited={1} />
     </SafeAreaView>
   );
 };
