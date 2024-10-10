@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "icon": "./assets/images/logo.png",
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
