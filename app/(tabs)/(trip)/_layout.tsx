@@ -4,6 +4,10 @@ const Layout = () => {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="create-trip"
+        options={{ presentation: "modal", headerShown: false }}
+      />
     </Stack>
   );
 };

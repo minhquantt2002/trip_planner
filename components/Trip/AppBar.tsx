@@ -2,7 +2,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 
 const AppBarTrip = ({ tab, setTab }: { tab: number; setTab: any }) => {
   return (
-    <View className="flex-row items-center rounded-xl bg-[#D9D9D9]">
+    <View className="mt-2 flex-row items-center rounded-xl bg-[#D9D9D9]">
       <TouchableOpacity
         className={`w-5/12 py-3 ${tab === 1 ? "rounded-xl bg-primaryColor" : ""}`}
         onPress={() => {

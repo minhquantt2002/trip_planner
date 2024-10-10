@@ -62,7 +62,7 @@ const TripScreen = () => {
     <SafeAreaView className="h-full bg-white">
       <View className="flex h-full w-full items-center">
         <AppBarTrip tab={tab} setTab={setTab} />
-        <ScrollView className="mt-4 w-full">
+        <ScrollView className="mt-2 w-full">
           <View className="m-auto w-11/12">
             <TextField
               wrapperStyle="w-full"
@@ -72,7 +72,7 @@ const TripScreen = () => {
               onChangeText={(value) => setSearch(value)}
             />
 
-            <View className="mt-6 w-full space-y-2">
+            <View className="mt-4 w-full space-y-2">
               {data.map((trip, index) => (
                 <TripCard key={trip.id} trip={trip} />
               ))}

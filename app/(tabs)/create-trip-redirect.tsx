@@ -3,7 +3,10 @@ import { Redirect } from "expo-router";
 const CreateTripRedirect = () => {
   return (
     <Redirect
-      href={{ pathname: "/(tabs)/(trip)", params: { activeCreateTrip: 1 } }}
+      href={{
+        pathname: "/(tabs)/(trip)/create-trip",
+        // params: { activeCreateTrip: 1 },
+      }}
     />
   );
 };
