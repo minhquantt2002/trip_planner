@@ -46,12 +46,10 @@ const WelcomeScreen = () => {
                 className="h-[300px] w-full"
                 resizeMode="contain"
               />
-              <View className="mt-10 flex w-full flex-row items-center justify-center">
-                <Text className="mx-5 font-InterBold text-3xl text-black">
-                  {item.title}
-                </Text>
-              </View>
-              <Text className="text-md mx-5 mt-3 text-center font-InterMedium text-[#858585]">
+              <Text className="mx-5 mt-10 w-full font-InterBold text-3xl text-black">
+                {item.title}
+              </Text>
+              <Text className="text-md mx-5 mt-3 w-full font-InterMedium text-[#858585]">
                 {item.description}
               </Text>
             </View>

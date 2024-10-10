@@ -27,17 +27,17 @@ const TextField = ({
           </Text>
         )}
         <View
-          className={`flex flex-row items-center justify-between rounded-xl bg-white ${containerStyle}`}
+          className={`flex flex-row items-center justify-between rounded-xl border-[1px] border-neutral-300 bg-white px-4 ${containerStyle}`}
         >
-          {IconLeft && <IconLeft />}
+          {IconLeft && IconLeft}
 
           <TextInput
-            className={`flex-1 rounded-xl border-[1px] border-neutral-300 px-4 py-2 font-InterRegular ${inputStyle} `}
+            className={`flex-1 rounded-xl px-2 py-2 font-InterRegular ${inputStyle} `}
             secureTextEntry={secureTextEntry}
             {...props}
           />
 
-          {IconRight && <IconRight />}
+          {IconRight && IconRight}
         </View>
       </View>
     </TouchableWithoutFeedback>

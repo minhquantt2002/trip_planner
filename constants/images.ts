@@ -7,26 +7,26 @@ export const images = {
   onboarding1,
   onboarding2,
   onboarding3,
-  Logo
+  Logo,
 };
 
 export const onboarding = [
   {
     id: 1,
-    title: "Onboarding 1",
-    description: "Onboarding description 1",
+    title: "Welcome to Trip Planner",
+    description: "Lorem ipsum dolor sit amet.",
     image: images.onboarding1,
   },
   {
     id: 2,
-    title: "Onboarding 2",
-    description: "Onboarding description 2",
+    title: "We are the first",
+    description: "Lorem ipsum dolor sit amet.",
     image: images.onboarding2,
   },
   {
     id: 3,
-    title: "Onboarding 3",
-    description: "Onboarding description 3",
+    title: "Get started",
+    description: "Let's start with planning.",
     image: images.onboarding3,
   },
 ];

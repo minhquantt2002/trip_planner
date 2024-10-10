@@ -13,7 +13,7 @@ const Button = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      className={`w-full flex-row items-center justify-center rounded-xl bg-primary p-2 ${className}`}
+      className={`w-full flex-row items-center justify-center rounded-xl bg-primaryColor p-2 ${className}`}
       {...props}
     >
       {IconLeft && <IconLeft />}

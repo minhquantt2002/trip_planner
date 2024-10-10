@@ -21,6 +21,8 @@ const SignUpScreen = () => {
   const [fullName, setFullName] = useState("");
 
   const onCreateAccount = () => {
+    router.replace("/(tabs)/(trip)");
+
     // if (!email && !password && !fullName) {
     //   ToastAndroid.show('Please enter all details', ToastAndroid.BOTTOM);
     //   return;
@@ -51,7 +53,7 @@ const SignUpScreen = () => {
             <Text className="my-4 font-InterMedium text-2xl">
               Create an account
             </Text>
-            <Text className="text-md w-8/12 text-center font-InterRegular">
+            <Text className="text-md w-8/12 text-center font-InterRegular text-gray-600">
               Fill your information below or register with your social account
             </Text>
 
@@ -60,7 +62,11 @@ const SignUpScreen = () => {
               <TextField label="Last Name" />
               <TextField label="Email" />
               <TextField label="Password" secureTextEntry={true} />
-              <Button title="Sign up" className="mt-6" />
+              <Button
+                title="Sign up"
+                className="mt-6"
+                onPress={onCreateAccount}
+              />
             </View>
             <View className="flex flex-row items-center justify-center">
               <Text className="font-InterRegular text-gray-500">
@@ -71,7 +77,9 @@ const SignUpScreen = () => {
                   router.replace("/(auth)/sign-in");
                 }}
               >
-                <Text className="font-InterMedium text-primary">Sign in</Text>
+                <Text className="text-primary font-InterMedium text-primaryColor">
+                  Sign in
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
