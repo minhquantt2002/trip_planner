@@ -7,9 +7,9 @@ const AlertScreen = () => {
   return (
     <SafeAreaView className="h-full bg-white">
       <View className="flex h-full w-full items-center">
-        <View className="w-full flex-row items-center pt-6 mb-8">
+        <View className="w-full flex-row items-center pt-1 mb-6">
           <View className="w-11" />
-          <Text className="color-primaryColor flex-1 text-center font-InterBold text-xl">
+          <Text className="color-black flex-1 text-center font-InterBold text-xl">
             Notification
           </Text>
           <View className="mr-5">
@@ -39,7 +39,7 @@ const notifications = [
   {
     trip: "Go To Beaches",
     costs: "2000$",
-    time: "Sep 30 - Oct 1.",
+    time: "7 a.m Sep 30.",
     location: "Hawaii",
     imageUrl:
       "https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/07/anh-phong-canh-dep-41.jpg",
@@ -47,7 +47,7 @@ const notifications = [
   {
     trip: "Mountain Hiking",
     costs: "1500$",
-    time: "Oct 5 - Oct 8.",
+    time: "3 p.m Oct 5.",
     location: "Colorado",
     imageUrl:
       "https://vemaybay123.vn/static/team/upload/images/tin-tuc/1%201kham-pha-nhung-diem-du-lich-hap-dan-tai-colorado/L%E1%BA%ADp%20k%E1%BA%BF%20ho%E1%BA%A1ch%20cho%20chuy%E1%BA%BFn%20du%20l%E1%BB%8Bch%20Colorado.jpg",
@@ -55,7 +55,7 @@ const notifications = [
   {
     trip: "City Tour",
     costs: "1000$",
-    time: "Nov 1 - Nov 3.",
+    time: "2 a.m Nov 1",
     location: "New York",
     imageUrl:
       "https://i.natgeofe.com/k/5b396b5e-59e7-43a6-9448-708125549aa1/new-york-statue-of-liberty.jpg",
