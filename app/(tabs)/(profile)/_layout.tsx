@@ -4,6 +4,14 @@ const Layout = () => {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="edit-profile-tab"
+        options={{ presentation: "modal", headerShown: false }}
+      />
+      <Stack.Screen
+        name="change-password-tab"
+        options={{ presentation: "modal", headerShown: false }}
+      />
     </Stack>
   );
 };
