@@ -2,7 +2,7 @@ import Button from "@/components/Button";
 import DateTimePicker from "@/components/DateTimePicker";
 import ImageCoverField from "@/components/ImageCoverField";
 import TextField from "@/components/TextField";
-import formatDate from "@/utils/format-datetime";
+import { formatDate } from "@/utils/datetime";
 import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useState } from "react";
@@ -72,7 +72,12 @@ const CreateTripModal = () => {
             </View>
 
             <View className="mt-6 space-y-4">
-              <Button title="Save" />
+              <Button
+                title="Save"
+                onPress={() => {
+                  router.replace("/(tabs)/(trip)");
+                }}
+              />
               <Button
                 title="Cancel"
                 className="bg-white"

@@ -1,4 +1,5 @@
-import { MaterialIcons } from "@expo/vector-icons";
+import { countDays, getRangeDate } from "@/utils/datetime";
+import { router } from "expo-router";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
 interface TripProps {
@@ -15,7 +16,12 @@ const TripCard = ({ trip }: { trip: TripProps }) => {
     <TouchableOpacity
       className="mb-4 h-36 w-full flex-row rounded-lg border-[1px] border-neutral-200 px-4 py-2"
       onPress={() => {
-        // redirect to detail
+        router.push({
+          pathname: "/(tabs)/(trip)/trip-details/[id]",
+          params: {
+            id: trip.id,
+          },
+        });
       }}
     >
       <Image
@@ -27,7 +33,8 @@ const TripCard = ({ trip }: { trip: TripProps }) => {
       <View className="ml-4 h-full flex-col items-start justify-center">
         <Text className="font-InterSemiBold text-lg">{trip.name}</Text>
         <Text className="font-InterMedium text-gray-700">
-          {trip.endDate} {"\n"} (2 days)
+          {getRangeDate(trip.startDate, trip.endDate)} {"\n"} (
+          {countDays(trip.startDate, trip.endDate)} days)
         </Text>
         <Text className="mt-4 font-InterMedium text-gray-700">
           Expense: {trip.expense} $
