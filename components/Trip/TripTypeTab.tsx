@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from "react-native";
 
-const TypeTripTab = ({ tab, setTab }: { tab: number; setTab: any }) => {
+const TripTypeTab = ({ tab, setTab }: { tab: number; setTab: any }) => {
   return (
     <View className="mt-2 flex-row items-center rounded-xl bg-[#D9D9D9]">
       <TouchableOpacity
@@ -38,4 +38,4 @@ const TypeTripTab = ({ tab, setTab }: { tab: number; setTab: any }) => {
   );
 };
 
-export default TypeTripTab;
+export default TripTypeTab;

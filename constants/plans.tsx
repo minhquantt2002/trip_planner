@@ -1,5 +1,20 @@
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
+export type PlanType =
+  | "lodging"
+  | "flight"
+  | "restaurant"
+  | "tour"
+  | "boat"
+  | "train"
+  | "meeting"
+  | "concert"
+  | "carRental"
+  | "note"
+  | "theater"
+  | "shopping"
+  | "activity";
+
 export const plans = {
   lodging: {
     name: "Lodging",

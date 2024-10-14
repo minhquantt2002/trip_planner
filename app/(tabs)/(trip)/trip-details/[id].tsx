@@ -1,11 +1,9 @@
 import PlanLine from "@/components/Plan/PlanLine";
 import AppBar from "@/components/Trip/AppBar";
 import { images } from "@/constants/images";
-import { plans } from "@/constants/plans";
 import { getRangeDate } from "@/utils/datetime";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
-import moment from "moment";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 

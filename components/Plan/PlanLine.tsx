@@ -1,4 +1,4 @@
-import { plans } from "@/constants/plans";
+import { PlanType, plans } from "@/constants/plans";
 import { Text, TouchableOpacity, View } from "react-native";
 
 interface PlanItemProps {
@@ -7,6 +7,7 @@ interface PlanItemProps {
   valueLeft?: string;
   titleRight: string;
   descriptionRight?: string;
+  planType: PlanType;
 }
 
 interface PlanLineProps {
@@ -16,6 +17,7 @@ interface PlanLineProps {
 const PlanItem = ({
   isFirst,
   isLast,
+  planType,
   valueLeft = "",
   titleRight,
   descriptionRight = "",
@@ -33,7 +35,7 @@ const PlanItem = ({
             className={`h-2 w-1 ${isFirst ? "bg-white" : "bg-primaryColor"}`}
           />
           <View className="h-9 w-9 rounded-full bg-primaryColor p-1">
-            {plans.flight.icon}
+            {plans[planType].icon}
           </View>
           <View
             className={`w-1 flex-1 ${isLast ? "bg-white" : "bg-primaryColor"}`}
@@ -50,31 +52,46 @@ const PlanItem = ({
 };
 
 const PlanLine = () => {
+  const data = [
+    {
+      title: "Flight",
+      planType: "flight",
+      startDatetime: "2024-09-01T08:00",
+      endDatetime: "2024-09-01T12:00",
+      airline: "VN Airline",
+    },
+    {
+      title: "Lodging",
+      planType: "lodging",
+      startDatetime: "2024-09-01T08:00",
+      endDatetime: "2024-09-01T12:00",
+    },
+    {
+      title: "Car Rental",
+      planType: "carRental",
+      startDatetime: "2024-09-01T08:00",
+      endDatetime: "2024-09-01T12:00",
+    },
+    {
+      title: "Tour",
+      planType: "tour",
+      startDatetime: "2024-09-01T08:00",
+      endDatetime: "2024-09-01T12:00",
+    },
+  ];
   return (
-    <>
-      <PlanItem
-        isFirst
-        valueLeft="08:00"
-        titleRight="Lodging"
-        descriptionRight="Checkout: 08:00"
-      />
-      <PlanItem
-        valueLeft="08:00"
-        titleRight="Lodging"
-        descriptionRight="Checkout: 08:00"
-      />
-      <PlanItem
-        valueLeft="08:00"
-        titleRight="Lodging"
-        descriptionRight="VN 12345 (Vietnam Airline) Arriving in 5 hrs 30 min at 01:00"
-      />
-      <PlanItem
-        isLast
-        valueLeft="08:00"
-        titleRight="Lodging"
-        descriptionRight="Checkout: 08:00"
-      />
-    </>
+    <View>
+      {data.map((plan, index) => (
+        <PlanItem
+          isLast={index === data.length - 1}
+          isFirst={index === 0}
+          planType={plan.planType as PlanType}
+          valueLeft="08:00"
+          titleRight={plan.title}
+          descriptionRight="Checkout: 08:00"
+        />
+      ))}
+    </View>
   );
 };
 

@@ -1,5 +1,5 @@
 import TextField from "@/components/TextField";
-import TypeTripTab from "@/components/Trip/TypeTripTab";
+import TripTypeTab from "@/components/Trip/TripTypeTab";
 import TripCard from "@/components/Trip/TripCard";
 import { images } from "@/constants/images";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -57,7 +57,7 @@ const TripScreen = () => {
   return (
     <SafeAreaView className="h-full bg-white">
       <View className="flex h-full w-full items-center">
-        <TypeTripTab tab={tab} setTab={setTab} />
+        <TripTypeTab tab={tab} setTab={setTab} />
         <ScrollView className="mt-2 w-full">
           <View className="m-auto w-11/12">
             <TextField
