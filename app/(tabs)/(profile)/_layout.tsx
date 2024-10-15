@@ -12,6 +12,7 @@ const Layout = () => {
         name="change-password-tab"
         options={{ presentation: "modal", headerShown: false }}
       />
+      <Stack.Screen name='(document)' options={{ headerShown: false }} />
     </Stack>
   );
 };

@@ -28,7 +28,9 @@ const ProfileScreen = () => {
             </View>
           </TouchableOpacity>
           <View className="mt-6 w-11/12">
-            <TouchableOpacity className="mx-4 flex-row items-center justify-between border-b border-t border-gray-200 py-4">
+            <TouchableOpacity className="mx-4 flex-row items-center justify-between border-b border-t border-gray-200 py-4"
+              onPress={()=>{router.push('/(tabs)/(profile)/(document)')}}
+            >
               <View className="flex-row items-center">
                 <MaterialIcons name="folder-open" size={24} color="black" />
                 <Text className="ml-4 font-InterRegular text-lg">
