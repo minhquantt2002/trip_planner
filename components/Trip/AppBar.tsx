@@ -10,9 +10,9 @@ interface AppBarProps {
 const AppBar = ({ title, childLeft, childRight }: AppBarProps) => {
   return (
     <View className="w-11/12 flex-row items-center">
-      <View className="flex w-2/12">{childLeft && childLeft}</View>
-      <Text className="w-8/12 text-center font-InterBold text-xl">{title}</Text>
-      <View className="flex w-2/12">{childRight && childRight}</View>
+      <View className="w-2/12">{childLeft && childLeft}</View>
+      <Text className="w-7/12 font-InterBold text-xl">{title}</Text>
+      <View className="w-3/12">{childRight && childRight}</View>
     </View>
   );
 };

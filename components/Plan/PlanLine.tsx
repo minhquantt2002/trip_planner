@@ -1,4 +1,7 @@
-import { PlanType, plans } from "@/constants/plans";
+import { plans } from "@/constants/plans";
+import { Plan, PlanType } from "@/types/types";
+import { PlanTypeItemProps } from "@/utils/plan";
+import moment from "moment";
 import { Text, TouchableOpacity, View } from "react-native";
 
 interface PlanItemProps {
@@ -11,7 +14,10 @@ interface PlanItemProps {
 }
 
 interface PlanLineProps {
-  index: number;
+  date: string;
+  isFirstLine?: boolean;
+  isLastLine?: boolean;
+  plans: PlanTypeItemProps[];
 }
 
 const PlanItem = ({
@@ -25,9 +31,12 @@ const PlanItem = ({
   return (
     <TouchableOpacity
       className={`mx-auto w-11/12 flex-row items-start space-x-3 ${isFirst ? "mt-1.5" : ""}`}
+      onPress={() => {
+        //
+      }}
     >
       <View className="flex-row space-x-1">
-        <Text className="mt-4 w-14 text-center font-InterMedium">
+        <Text className="mt-4 w-14 text-center font-InterSemiBold">
           {valueLeft}
         </Text>
         <View className="h-full flex-col items-center">
@@ -43,7 +52,7 @@ const PlanItem = ({
         </View>
       </View>
 
-      <View className="mb-1.5 w-6/12">
+      <View className={`mb-2 mt-1 w-7/12`}>
         <Text className="font-InterBold text-lg">{titleRight}</Text>
         <Text className="font-InterMedium">{descriptionRight}</Text>
       </View>
@@ -51,47 +60,28 @@ const PlanItem = ({
   );
 };
 
-const PlanLine = () => {
-  const data = [
-    {
-      title: "Flight",
-      planType: "flight",
-      startDatetime: "2024-09-01T08:00",
-      endDatetime: "2024-09-01T12:00",
-      airline: "VN Airline",
-    },
-    {
-      title: "Lodging",
-      planType: "lodging",
-      startDatetime: "2024-09-01T08:00",
-      endDatetime: "2024-09-01T12:00",
-    },
-    {
-      title: "Car Rental",
-      planType: "carRental",
-      startDatetime: "2024-09-01T08:00",
-      endDatetime: "2024-09-01T12:00",
-    },
-    {
-      title: "Tour",
-      planType: "tour",
-      startDatetime: "2024-09-01T08:00",
-      endDatetime: "2024-09-01T12:00",
-    },
-  ];
+const PlanLine = ({ date, isFirstLine, isLastLine, plans }: PlanLineProps) => {
   return (
-    <View>
-      {data.map((plan, index) => (
-        <PlanItem
-          isLast={index === data.length - 1}
-          isFirst={index === 0}
-          planType={plan.planType as PlanType}
-          valueLeft="08:00"
-          titleRight={plan.title}
-          descriptionRight="Checkout: 08:00"
-        />
-      ))}
-    </View>
+    plans.length !== 0 && (
+      <View>
+        <View className="bg-neutral-300 py-1">
+          <Text className="mx-auto w-11/12 font-InterSemiBold">
+            {moment(date).format("dddd, DD MMMM YYYY")}
+          </Text>
+        </View>
+        {plans.map((plan, index) => (
+          <PlanItem
+            key={index}
+            isLast={index === plans.length - 1 && isLastLine}
+            isFirst={index === 0 && isFirstLine}
+            planType={plan.planType}
+            valueLeft={plan.valueLeft}
+            titleRight={plan.titleRight}
+            descriptionRight={plan.descriptionRight}
+          />
+        ))}
+      </View>
+    )
   );
 };
 

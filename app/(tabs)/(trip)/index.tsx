@@ -6,6 +6,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { trips } from "@/constants/plans";
 
 const data = [
   {
@@ -69,8 +70,19 @@ const TripScreen = () => {
             />
 
             <View className="mt-4 w-full space-y-2">
-              {data.map((trip, index) => (
-                <TripCard key={trip.id} trip={trip} />
+              {trips.map((trip, index) => (
+                <TripCard
+                  key={index}
+                  id={index}
+                  name={trip.name}
+                  image={trip.image_url}
+                  startDate={trip.start_date}
+                  endDate={trip.end_date}
+                  expense={trip.plans.reduce(
+                    (pre, cur) => pre + cur.expense,
+                    0,
+                  )}
+                />
               ))}
             </View>
           </View>
