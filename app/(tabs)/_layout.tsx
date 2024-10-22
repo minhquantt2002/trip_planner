@@ -1,5 +1,5 @@
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
-import { router, Stack, Tabs } from "expo-router";
+import { Tabs } from "expo-router";
 import React from "react";
 import { Platform, Text, TouchableOpacity, View } from "react-native";
 
