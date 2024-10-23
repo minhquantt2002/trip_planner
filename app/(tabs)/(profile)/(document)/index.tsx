@@ -33,7 +33,7 @@ const PinCodeScreen = () => {
       if (index > 0 && inputRefs.current[index - 1]) {
         inputRefs.current[index - 1]?.focus();
         const newPin = [...pin];
-        newPin[index - 1] = ""; 
+        newPin[index - 1] = "";
         setPin(newPin);
       }
     }
@@ -50,41 +50,34 @@ const PinCodeScreen = () => {
   };
 
   return (
-    <SafeAreaView className="h-full bg-white">
-      <ScrollView className="w-full">
-        <View className="flex h-full w-full items-center">
-          <View className="mt-48 flex-1 items-center justify-center rounded-lg bg-gray-100 pt-8">
-            <MaterialIcons name="lock-outline" size={64} color="gray" />
-
-            <Text className="mb-8 mt-5 text-xl font-semibold text-gray-700">
-              Please enter your pin code
-            </Text>
-
-            <View className="flex-row justify-between p-5">
-              {pin.map((p, index) => (
-                <TextInput
-                  key={index}
-                  ref={(el) => (inputRefs.current[index] = el)}
-                  value={p}
-                  onChangeText={(text) => handleChange(text, index)}
-                  onKeyPress={(e) => handleKeyPress(e, index)}
-                  keyboardType="numeric"
-                  maxLength={1}
-                  style={{
-                    borderBottomWidth: 1,
-                    borderBottomColor: "gray",
-                    width: 40,
-                    height: 50,
-                    textAlign: "center",
-                    fontSize: 24,
-                    marginHorizontal: 5,
-                  }}
-                />
-              ))}
-            </View>
-          </View>
+    <SafeAreaView className="flex-1 justify-center bg-white">
+      <View className="items-center">
+        <Text className="mb-5 text-xl font-semibold text-gray-700">
+          Please enter your pin code
+        </Text>
+        <View className="flex-row space-x-3">
+          {pin.map((p, index) => (
+            <TextInput
+              key={index}
+              ref={(el) => (inputRefs.current[index] = el)}
+              value={p}
+              onChangeText={(text) => handleChange(text, index)}
+              onKeyPress={(e) => handleKeyPress(e, index)}
+              keyboardType="numeric"
+              maxLength={1}
+              style={{
+                borderWidth: 1,
+                borderColor: "gray",
+                width: 50,
+                height: 50,
+                textAlign: "center",
+                fontSize: 24,
+                borderRadius: 10,
+              }}
+            />
+          ))}
         </View>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

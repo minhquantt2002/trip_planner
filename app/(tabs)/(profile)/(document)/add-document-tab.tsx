@@ -1,27 +1,46 @@
 import Button from "@/components/Button";
 import TextField from "@/components/TextField";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
 import { router } from "expo-router";
-import { useEffect } from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useState } from "react";
+import { ScrollView, Text, TouchableOpacity, View, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import * as DocumentPicker from "expo-document-picker";
 
 const AddDocumentScreen = () => {
-  const navigation = useNavigation();
-  useEffect(() => {
-    navigation.setOptions({
-      presentation: "modal",
-      headerShown: false,
-    });
-  }, [navigation]);
-  const onSave = () => {
-    alert("save successfull!");
+  const [documentName, setDocumentName] = useState("");
+  const [documentUrl, setDocumentUrl] = useState<string | null>(null);
+  const [documentImage, setDocumentImage] = useState<string | null>(null);
+
+  const pickDocument = async () => {
+    try {
+      const result = await DocumentPicker.getDocumentAsync({});
+      if (result.type === "success") {
+        setDocumentUrl(result.uri);
+
+        if (result.mimeType?.startsWith("image/")) {
+          setDocumentImage(result.uri);
+        } else {
+          setDocumentImage(null);
+        }
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
+
+  const onSave = () => {
+    if (!documentName || !documentUrl) {
+      alert("Please enter document name and upload a file.");
+      return;
+    }
+    alert(`Document saved!\nName: ${documentName}\nURL: ${documentUrl}`);
+  };
+
   const onCancel = () => {
-    //TODO confirm un save change.
     router.back();
   };
+
   return (
     <SafeAreaView className="h-full bg-white">
       <ScrollView className="w-full">
@@ -40,13 +59,28 @@ const AddDocumentScreen = () => {
             <View className="w-6"></View>
           </View>
           <View className="mt-2 w-10/12">
-            <TextField className="" label="Enter name of document" />
+            <TextField
+              className=""
+              label="Enter name of document"
+              value={documentName}
+              onChangeText={setDocumentName}
+            />
           </View>
 
-          <View className="mt-6 w-10/12 items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-8">
+          <TouchableOpacity
+            onPress={pickDocument}
+            className="mt-6 w-10/12 items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-8"
+          >
             <FontAwesome name="upload" size={24} color="gray" />
             <Text className="mt-2 text-gray-400">Upload Document</Text>
-          </View>
+          </TouchableOpacity>
+
+          {documentImage && (
+            <Image
+              source={{ uri: documentImage }}
+              className="mt-4 h-24 w-24 rounded"
+            />
+          )}
 
           <View className="mt-8 w-10/12">
             <Button title="Save" onPress={onSave} />
