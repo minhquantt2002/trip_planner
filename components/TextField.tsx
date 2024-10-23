@@ -20,7 +20,7 @@ const TextField = ({
 }: TextFieldProps) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View className={`my-2 ${wrapperStyle}`}>
+      <View className={`${wrapperStyle}`}>
         {label && (
           <Text className={`text-md mb-2 font-InterMedium ${labelStyle}`}>
             {label}
@@ -32,7 +32,7 @@ const TextField = ({
           {IconLeft && IconLeft}
 
           <TextInput
-            className={`flex-1 rounded-xl px-2 py-2 font-InterRegular ${inputStyle} `}
+            className={`flex-1 rounded-xl px-1.5 py-2 font-InterRegular ${inputStyle} `}
             secureTextEntry={secureTextEntry}
             {...props}
           />

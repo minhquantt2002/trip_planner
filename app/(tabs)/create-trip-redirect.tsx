@@ -5,7 +5,6 @@ const CreateTripRedirect = () => {
     <Redirect
       href={{
         pathname: "/(tabs)/(trip)/create-trip",
-        // params: { activeCreateTrip: 1 },
       }}
     />
   );

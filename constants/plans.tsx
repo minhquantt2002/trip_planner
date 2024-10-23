@@ -1,3 +1,4 @@
+import { FormField } from "@/components/Form";
 import { PlanType, Trip } from "@/types/types";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
@@ -282,3 +283,491 @@ export const trips: Trip[] = [
     ],
   },
 ];
+
+export const planFormFields = (planType: PlanType): FormField[] => {
+  switch (planType) {
+    case "lodging":
+      return [
+        {
+          id: "lodgingName",
+          title: "Lodging Name",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "checkinDate",
+          title: "Check-in Date",
+          type: "date",
+          xs: 8,
+        },
+        {
+          id: "checkinTime",
+          title: "Time",
+          type: "time",
+          xs: 4,
+        },
+        {
+          id: "checkoutDate",
+          title: "Checkout Date",
+          type: "date",
+          xs: 8,
+        },
+        {
+          id: "checkoutTime",
+          title: "Time",
+          type: "time",
+          xs: 4,
+        },
+        {
+          id: "expense",
+          title: "Expense",
+          type: "number",
+          xs: 12,
+        },
+        {
+          id: "address",
+          title: "Address",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "phone",
+          title: "Phone",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "email",
+          title: "Email",
+          type: "text",
+          xs: 12,
+        },
+      ];
+    case "flight":
+      return [
+        {
+          id: "airline",
+          title: "Airline *",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "expense",
+          title: "Expense",
+          type: "number",
+          xs: 12,
+        },
+        {
+          id: "titleDeparture",
+          title: "Departure",
+          type: "title",
+          xs: 12,
+        },
+        {
+          id: "departureDate",
+          title: "Departure Date",
+          type: "date",
+          xs: 8,
+        },
+        {
+          id: "departureTime",
+          title: "Time",
+          type: "time",
+          xs: 4,
+        },
+        {
+          id: "coach",
+          title: "Coach",
+          type: "number",
+          xs: 6,
+        },
+        {
+          id: "seat",
+          title: "Seat",
+          type: "number",
+          xs: 6,
+        },
+        {
+          id: "departureTerminal",
+          title: "Terminal",
+          type: "text",
+          xs: 6,
+        },
+        {
+          id: "departureGate",
+          title: "Gate",
+          type: "text",
+          xs: 6,
+        },
+        {
+          id: "address",
+          title: "Address",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "titleArrival",
+          title: "Arrival",
+          type: "title",
+          xs: 12,
+        },
+        {
+          id: "arrivalDate",
+          title: "Arrival Date",
+          type: "date",
+          xs: 8,
+        },
+        {
+          id: "arrivalTime",
+          title: "Time",
+          type: "time",
+          xs: 4,
+        },
+        {
+          id: "arrivalTerminal",
+          title: "Terminal",
+          type: "text",
+          xs: 6,
+        },
+        {
+          id: "arrivalGate",
+          title: "Gate",
+          type: "text",
+          xs: 6,
+        },
+        {
+          id: "arrivalAddress",
+          title: "Address",
+          type: "text",
+          xs: 12,
+        },
+      ];
+    case "restaurant":
+      return [
+        {
+          id: "restaurant",
+          title: "Restaurant",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "date",
+          title: "Date",
+          type: "date",
+          xs: 8,
+        },
+        {
+          id: "time",
+          title: "Time",
+          type: "time",
+          xs: 4,
+        },
+        {
+          id: "expense",
+          title: "Expense",
+          type: "number",
+          xs: 12,
+        },
+        {
+          id: "address",
+          title: "Address",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "phone",
+          title: "Phone",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "email",
+          title: "Email",
+          type: "text",
+          xs: 12,
+        },
+      ];
+    case "boat":
+      return [
+        {
+          id: "boatName",
+          title: "Boat Name",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "expense",
+          title: "Expense",
+          type: "number",
+          xs: 12,
+        },
+        {
+          id: "titleDeparture",
+          title: "Departure",
+          type: "title",
+          xs: 12,
+        },
+        {
+          id: "departureDate",
+          title: "Departure Date",
+          type: "date",
+          xs: 8,
+        },
+        {
+          id: "departureTime",
+          title: "Time",
+          type: "time",
+          xs: 4,
+        },
+        {
+          id: "coach",
+          title: "Coach",
+          type: "number",
+          xs: 6,
+        },
+        {
+          id: "seat",
+          title: "Seat",
+          type: "number",
+          xs: 6,
+        },
+        {
+          id: "address",
+          title: "Location / Address",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "titleArrival",
+          title: "Arrival",
+          type: "title",
+          xs: 12,
+        },
+        {
+          id: "arrivalDate",
+          title: "Arrival Date",
+          type: "date",
+          xs: 8,
+        },
+        {
+          id: "arrivalTime",
+          title: "Time",
+          type: "time",
+          xs: 4,
+        },
+        {
+          id: "arrivalAddress",
+          title: "Location / Address",
+          type: "text",
+          xs: 12,
+        },
+      ];
+    case "train":
+      return [
+        {
+          id: "boatName",
+          title: "Boat Name",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "expense",
+          title: "Expense",
+          type: "number",
+          xs: 12,
+        },
+        {
+          id: "titleDeparture",
+          title: "Departure",
+          type: "title",
+          xs: 12,
+        },
+        {
+          id: "departureDate",
+          title: "Departure Date",
+          type: "date",
+          xs: 8,
+        },
+        {
+          id: "departureTime",
+          title: "Time",
+          type: "time",
+          xs: 4,
+        },
+        {
+          id: "coach",
+          title: "Coach",
+          type: "number",
+          xs: 6,
+        },
+        {
+          id: "seat",
+          title: "Seat",
+          type: "number",
+          xs: 6,
+        },
+        {
+          id: "address",
+          title: "Location / Address",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "titleArrival",
+          title: "Arrival",
+          type: "title",
+          xs: 12,
+        },
+        {
+          id: "arrivalDate",
+          title: "Arrival Date",
+          type: "date",
+          xs: 8,
+        },
+        {
+          id: "arrivalTime",
+          title: "Time",
+          type: "time",
+          xs: 4,
+        },
+        {
+          id: "arrivalAddress",
+          title: "Location / Address",
+          type: "text",
+          xs: 12,
+        },
+      ];
+    case "carRental":
+      return [
+        {
+          id: "rentalAgency",
+          title: "Rental Agency",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "expense",
+          title: "Expense",
+          type: "number",
+          xs: 12,
+        },
+        {
+          id: "titlePickup",
+          title: "Pickup",
+          type: "title",
+          xs: 12,
+        },
+        {
+          id: "pickupDate",
+          title: "Pickup Date",
+          type: "date",
+          xs: 8,
+        },
+        {
+          id: "pickupTime",
+          title: "Time",
+          type: "time",
+          xs: 4,
+        },
+        {
+          id: "pickupAddress",
+          title: "Location / Address",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "pickupPhone",
+          title: "Phone",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "titleDropOff",
+          title: "Drop-Off",
+          type: "title",
+          xs: 12,
+        },
+        {
+          id: "dropOffDate",
+          title: "Drop-Off Date",
+          type: "date",
+          xs: 8,
+        },
+        {
+          id: "dropOffTime",
+          title: "Time",
+          type: "time",
+          xs: 4,
+        },
+        {
+          id: "dropOffAddress",
+          title: "Location / Address",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "dropOffPhone",
+          title: "Phone",
+          type: "text",
+          xs: 12,
+        },
+      ];
+    default:
+      return [
+        {
+          id: "eventName",
+          title: plans[planType].name,
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "startDate",
+          title: "Start Date",
+          type: "date",
+          xs: 8,
+        },
+        {
+          id: "startTime",
+          title: "Time",
+          type: "time",
+          xs: 4,
+        },
+        {
+          id: "endDate",
+          title: "End Date",
+          type: "date",
+          xs: 8,
+        },
+        {
+          id: "endTime",
+          title: "Time",
+          type: "time",
+          xs: 4,
+        },
+        {
+          id: "expense",
+          title: "Expense",
+          type: "number",
+          xs: 12,
+        },
+        {
+          id: "address",
+          title: "Address",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "phone",
+          title: "Phone",
+          type: "text",
+          xs: 12,
+        },
+        {
+          id: "email",
+          title: "Email",
+          type: "text",
+          xs: 12,
+        },
+      ];
+  }
+};

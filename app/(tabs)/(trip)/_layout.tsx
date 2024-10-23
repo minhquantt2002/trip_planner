@@ -6,10 +6,7 @@ const Layout = () => {
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="(plan)" options={{ headerShown: false }} />
       <Stack.Screen name="trip-details/[id]" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="create-trip"
-        options={{ presentation: "modal", headerShown: false }}
-      />
+      <Stack.Screen name="create-trip" options={{ headerShown: false }} />
     </Stack>
   );
 };

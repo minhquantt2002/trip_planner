@@ -1,18 +1,16 @@
+import AppBar from "@/components/AppBar";
 import Button from "@/components/Button";
 import DateTimePicker from "@/components/DateTimePicker";
+import Form, { FormField } from "@/components/Form";
 import ImageCoverField from "@/components/ImageCoverField";
 import TextField from "@/components/TextField";
+import { planFormFields } from "@/constants/plans";
 import { formatDate } from "@/utils/datetime";
-import { FontAwesome } from "@expo/vector-icons";
+import { Feather, FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useState } from "react";
-import {
-  Platform,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const CreateTripModal = () => {
   const [tripName, setTripName] = useState("");
@@ -20,25 +18,118 @@ const CreateTripModal = () => {
   const [endDate, setEndDate] = useState(formatDate(new Date()));
   const [isVisible, setIsVisible] = useState(0);
 
+  const formFields: FormField[] = [
+    {
+      id: "airline",
+      title: "Airline *",
+      type: "text",
+      xs: 12,
+    },
+    {
+      id: "expense",
+      title: "Expense",
+      type: "number",
+      xs: 12,
+    },
+    {
+      id: "titleDeparture",
+      title: "Departure",
+      type: "title",
+      xs: 12,
+    },
+    {
+      id: "departureDate",
+      title: "Departure Date",
+      type: "date",
+      xs: 8,
+    },
+    {
+      id: "departureTime",
+      title: "Time",
+      type: "time",
+      xs: 4,
+    },
+    {
+      id: "coach",
+      title: "Coach",
+      type: "number",
+      xs: 6,
+    },
+    {
+      id: "seat",
+      title: "Seat",
+      type: "number",
+      xs: 6,
+    },
+    {
+      id: "departureTerminal",
+      title: "Terminal",
+      type: "text",
+      xs: 6,
+    },
+    {
+      id: "departureGate",
+      title: "Gate",
+      type: "text",
+      xs: 6,
+    },
+    {
+      id: "address",
+      title: "Address",
+      type: "text",
+      xs: 12,
+    },
+    {
+      id: "titleArrival",
+      title: "Arrival",
+      type: "title",
+      xs: 12,
+    },
+    {
+      id: "arrivalDate",
+      title: "Arrival Date",
+      type: "date",
+      xs: 8,
+    },
+    {
+      id: "arrivalTime",
+      title: "Time",
+      type: "time",
+      xs: 4,
+    },
+    {
+      id: "arrivalTerminal",
+      title: "Terminal",
+      type: "text",
+      xs: 6,
+    },
+    {
+      id: "arrivalGate",
+      title: "Gate",
+      type: "text",
+      xs: 6,
+    },
+    {
+      id: "arrivalAddress",
+      title: "Address",
+      type: "text",
+      xs: 12,
+    },
+  ];
+
   return (
-    <View
-      className={`min-h-full w-full bg-white ${Platform.OS === "ios" ? "" : "pt-4"}`}
-    >
-      <View className="mx-auto w-11/12">
-        <View className="my-2 w-full flex-row items-center">
-          <TouchableOpacity
-            onPress={() => {
-              router.replace("/(tabs)/(trip)");
-            }}
-          >
-            <Text className="font-InterRegular">Cancel</Text>
-          </TouchableOpacity>
-          <Text className="mr-10 flex-1 text-center font-InterSemiBold text-xl text-black">
-            Create Your Trip
-          </Text>
-        </View>
-        <ScrollView className="my-2">
-          <ImageCoverField />
+    <SafeAreaView className="h-full bg-white">
+      <View className="">
+        <AppBar
+          title="Create Your Trip"
+          childLeft={
+            <TouchableOpacity onPress={() => router.replace("/(tabs)/(trip)")}>
+              <Feather name="chevron-left" size={28} color="black" />
+            </TouchableOpacity>
+          }
+        />
+        <ScrollView className="mb-10 w-full">
+          {/* <ImageCoverField />
 
           <View className="mt-4">
             <TextField
@@ -80,10 +171,12 @@ const CreateTripModal = () => {
               className="bg-white"
               textStyle="text-primaryColor"
             />
-          </View>
+          </View> */}
+
+          <Form formFields={planFormFields("carRental")} />
         </ScrollView>
       </View>
-      <DateTimePicker
+      {/* <DateTimePicker
         date={startDate}
         isVisible={isVisible === 1}
         handleCancel={() => setIsVisible(0)}
@@ -102,8 +195,8 @@ const CreateTripModal = () => {
           setIsVisible(0);
           setEndDate(formatDate(value));
         }}
-      />
-    </View>
+      /> */}
+    </SafeAreaView>
   );
 };
 
