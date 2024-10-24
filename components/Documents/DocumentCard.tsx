@@ -32,11 +32,17 @@ const DocumentCard = (props: DocumentData) => {
   // Xử lý khi nhấn vào sửa/xóa
   const handleEdit = () => {
     router.push({
-      pathname: "/(document)/document-details/[id]",
+      pathname: "/(document)/document-edit/[id]",
       params: {
         id: 1,
+        documentData: JSON.stringify({
+          mainPhoto: props.mainPhoto,
+          title: props.title,
+          url: props.url,
+        }),
       },
     });
+    closeMenu();
   };
 
   const handleDelete = () => {
