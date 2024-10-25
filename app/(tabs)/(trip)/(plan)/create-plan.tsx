@@ -1,15 +1,20 @@
 import AppBar from "@/components/AppBar";
-import { plans } from "@/constants/plans";
-import { PlanType } from "@/types/types";
+import Form from "@/components/Form";
+import { initPlanValues, planFormFields, plans } from "@/constants/plans";
 import { Feather } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
-import { useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { useMemo, useState } from "react";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const CreatePlanScreen = () => {
   const { planType } = useLocalSearchParams<{ planType: PlanType }>();
   const planItem = plans[planType];
+  const formFields = useMemo(() => {
+    return planFormFields(planType);
+  }, []);
+
+  const [initValues, setInitValues] = useState<Plan>(initPlanValues(planType));
 
   return (
     <SafeAreaView className="h-full bg-white">
@@ -27,6 +32,18 @@ const CreatePlanScreen = () => {
             </TouchableOpacity>
           }
         />
+        <ScrollView className="mb-2 w-full">
+          <Form<Plan>
+            initValues={initValues}
+            formFields={formFields}
+            onChange={(field, value) => {
+              setInitValues({
+                ...initValues,
+                [field]: value,
+              });
+            }}
+          />
+        </ScrollView>
       </View>
     </SafeAreaView>
   );

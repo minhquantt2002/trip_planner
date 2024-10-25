@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import TextField from "@/components/TextField";
+import TextField from "@/components/Form/Field/TextField";
 import Button from "@/components/Button";
 import { images } from "@/constants/images";
 import { SafeAreaView } from "react-native-safe-area-context";

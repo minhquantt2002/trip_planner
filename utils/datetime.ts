@@ -4,7 +4,15 @@ export const formatDate = (date: Date): string => {
   return moment(date).format("ddd, DD MMM YYYY");
 };
 
-export const formatTime = (time: string): string => {
+export const formatStringDate = (date: string): string => {
+  return moment(date, 'YYYY-MM-DDTHH:mm').format("ddd, DD MMM YYYY");
+};
+
+export const formatTime = (time: Date): string => {
+  return moment(time).format("HH:mm");
+};
+
+export const formatStringTime = (time: string): string => {
   return moment(time).format("HH:mm");
 };
 

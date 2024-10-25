@@ -1,21 +1,21 @@
 import moment from "moment";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-interface DateTimePickerProps {
+interface DatePickerProps {
   date: string;
   isVisible: boolean;
   minimumDate?: string;
-  handleConfirm: (value: Date) => void;
+  handleConfirm: (value: string) => void;
   handleCancel: () => void;
 }
 
-const DateTimePicker = ({
+const DatePicker = ({
   date,
   isVisible,
   handleConfirm,
   handleCancel,
   minimumDate,
-}: DateTimePickerProps) => {
+}: DatePickerProps) => {
   let formattedMinimumDate: Date | undefined = moment(
     minimumDate,
     "ddd, DD MMM YYYY",
@@ -31,7 +31,7 @@ const DateTimePicker = ({
   ).toDate();
 
   if (isNaN(formattedDate.getDate())) {
-    formattedMinimumDate = new Date();
+    formattedDate = new Date();
   }
 
   return (
@@ -40,10 +40,12 @@ const DateTimePicker = ({
       minimumDate={formattedMinimumDate}
       isVisible={isVisible}
       mode="date"
-      onConfirm={handleConfirm}
+      onConfirm={(value) => {
+        handleConfirm(moment(value).format("YYYY-MM-DDTHH:mm"));
+      }}
       onCancel={handleCancel}
     />
   );
 };
 
-export default DateTimePicker;
+export default DatePicker;

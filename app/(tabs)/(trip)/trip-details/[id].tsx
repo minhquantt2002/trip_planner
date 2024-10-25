@@ -1,9 +1,7 @@
 import PlanLine from "@/components/Plan/PlanLine";
 import AppBar from "@/components/AppBar";
 import { images } from "@/constants/images";
-import { trips } from "@/constants/plans";
-import { compareDate, getRangeDate } from "@/utils/datetime";
-import { formatPlanByPlanItem, PlanTypeItemProps } from "@/utils/plan";
+import { getRangeDate } from "@/utils/datetime";
 import { Feather } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import moment from "moment";
@@ -11,6 +9,8 @@ import React, { useMemo, useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Menu, Provider } from "react-native-paper";
+import { trips } from "@/constants/trips";
+import { PlanTypeItemProps, formatPlanByPlanItem } from "@/constants/plans";
 
 const TripDetailScreen = () => {
   const { id } = useLocalSearchParams<{ id: string }>();

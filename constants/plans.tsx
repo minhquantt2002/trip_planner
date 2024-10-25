@@ -1,6 +1,11 @@
 import { FormField } from "@/components/Form";
-import { PlanType, Trip } from "@/types/types";
+import {
+  formatDatetime,
+  formatStringTime,
+  getRangeTime,
+} from "@/utils/datetime";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import moment from "moment";
 
 export const plans = {
   lodging: {
@@ -129,194 +134,41 @@ export const listPlans: {
   },
 ];
 
-export const trips: Trip[] = [
-  {
-    name: "Trip 1",
-    image_url:
-      "https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp",
-    start_date: "2024-11-01",
-    end_date: "2024-11-10",
-    plans: [
-      {
-        plan_type: "lodging",
-        name: "Luxury Hotel",
-        airline: "Air France",
-        checkin_at: "2024-11-01T15:00",
-        checkout_at: "2024-11-05T11:00",
-        expense: 500,
-        address: "Paris, France",
-        phone: "0123456789",
-        email: "contact@luxuryhotel.com",
-        document: "https://example.com/luxury_hotel_invoice.pdf",
-      },
-      {
-        plan_type: "flight",
-        airline: "VN Airline",
-        departure: {
-          datetime: "2024-11-01T10:00",
-          address: "New York - JFK Airport",
-          terminal: "C",
-          gate: "32",
-          seat: "12A",
-          coach: "Business",
-        },
-        arrival: {
-          datetime: "2024-11-01T18:00",
-          address: "Paris - Charles de Gaulle",
-          terminal: "2E",
-          gate: "14",
-        },
-        expense: 1000,
-        document: "https://example.com/flight_ticket.pdf",
-      },
-      {
-        plan_type: "restaurant",
-        name: "Le Gourmet",
-        start_datetime: "2024-11-02T20:00",
-        expense: 150,
-        address: "Paris, France",
-        phone: "0987654321",
-        email: "info@legourmet.fr",
-        document: "https://example.com/dinner_invoice.pdf",
-      },
-    ],
-  },
-  {
-    name: "Trip 2",
-    image_url:
-      "https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg",
-    start_date: "2024-12-05",
-    end_date: "2024-12-12",
-    plans: [
-      {
-        plan_type: "lodging",
-        name: "Mountain Resort",
-        airline: "Thai Airways",
-        checkin_at: "2024-12-05T14:00",
-        checkout_at: "2024-12-09T10:00",
-        expense: 600,
-        address: "Chiang Mai, Thailand",
-        phone: "0987654321",
-        email: "contact@mountainresort.com",
-        document: "https://example.com/resort_invoice.pdf",
-      },
-      {
-        plan_type: "tour",
-        name: "Elephant Sanctuary Tour",
-        start_datetime: "2024-12-06T09:00",
-        end_datetime: "2024-12-06T17:00",
-        expense: 120,
-        address: "Chiang Mai, Thailand",
-        phone: "0123456789",
-        email: "info@elephanttour.com",
-        document: "https://example.com/tour_ticket.pdf",
-      },
-      {
-        plan_type: "boat",
-        name: "River Cruise",
-        coach: "A",
-        seat: "14",
-        departure: {
-          datetime: "2024-12-07T10:00",
-          address: "Chiang Mai River",
-        },
-        arrival: { datetime: "2024-12-07T12:00", address: "Chiang Mai River" },
-        expense: 200,
-        document: "https://example.com/boat_ticket.pdf",
-      },
-    ],
-  },
-  {
-    name: "Trip 3",
-    image_url:
-      "https://i0.wp.com/picjumbo.com/wp-content/uploads/wooden-pier-free-image.jpeg?w=600&quality=80",
-    start_date: "2025-01-10",
-    end_date: "2025-01-20",
-    plans: [
-      {
-        plan_type: "flight",
-        airline: "Vietjet",
-        departure: {
-          datetime: "2025-01-10T07:00",
-          address: "Los Angeles - LAX",
-          terminal: "B",
-          gate: "20",
-          seat: "15C",
-          coach: "Economy",
-        },
-        arrival: {
-          datetime: "2025-01-10T11:00",
-          address: "Tokyo - Narita Airport",
-          terminal: "1",
-          gate: "10",
-        },
-        expense: 900,
-        document: "https://example.com/flight_ticket.pdf",
-      },
-      {
-        plan_type: "carRental",
-        rentalAgency: "Tokyo Car Rentals",
-        pickup: {
-          datetime: "2025-01-11T09:00",
-          addrress: "Tokyo Narita Airport",
-          phone: "0123456789",
-        },
-        drop_off: {
-          datetime: "2025-01-15T18:00",
-          addrress: "Tokyo Narita Airport",
-          phone: "0123456789",
-        },
-        expense: 300,
-        document: "https://example.com/car_rental_receipt.pdf",
-      },
-      {
-        plan_type: "shopping",
-        name: "Akihabara Electronics",
-        start_datetime: "2025-01-13T12:00",
-        end_datetime: "2025-01-13T16:00",
-        expense: 400,
-        address: "Akihabara, Tokyo",
-        phone: "0987654321",
-        email: "sales@akihabara.com",
-        document: "https://example.com/shopping_invoice.pdf",
-      },
-    ],
-  },
-];
-
-export const planFormFields = (planType: PlanType): FormField[] => {
+export const planFormFields = (planType: PlanType): FormField<Plan>[] => {
   switch (planType) {
     case "lodging":
       return [
         {
-          id: "lodgingName",
+          id: "name",
           title: "Lodging Name",
           type: "text",
           xs: 12,
         },
         {
-          id: "checkinDate",
+          id: "checkin_at",
           title: "Check-in Date",
           type: "date",
           xs: 8,
         },
         {
-          id: "checkinTime",
+          id: "checkin_at",
           title: "Time",
           type: "time",
           xs: 4,
         },
         {
-          id: "checkoutDate",
+          id: "checkout_at",
           title: "Checkout Date",
           type: "date",
           xs: 8,
+          hasMinimumDate: "checkin_at",
         },
         {
-          id: "checkoutTime",
+          id: "checkout_at",
           title: "Time",
           type: "time",
           xs: 4,
+          hasMinimumDate: "checkin_at",
         },
         {
           id: "expense",
@@ -358,19 +210,19 @@ export const planFormFields = (planType: PlanType): FormField[] => {
           xs: 12,
         },
         {
-          id: "titleDeparture",
+          id: "title",
           title: "Departure",
           type: "title",
           xs: 12,
         },
         {
-          id: "departureDate",
+          id: "departure_at",
           title: "Departure Date",
           type: "date",
           xs: 8,
         },
         {
-          id: "departureTime",
+          id: "departure_at",
           title: "Time",
           type: "time",
           xs: 4,
@@ -388,55 +240,57 @@ export const planFormFields = (planType: PlanType): FormField[] => {
           xs: 6,
         },
         {
-          id: "departureTerminal",
+          id: "departure_terminal",
           title: "Terminal",
           type: "text",
           xs: 6,
         },
         {
-          id: "departureGate",
+          id: "departure_gate",
           title: "Gate",
           type: "text",
           xs: 6,
         },
         {
-          id: "address",
+          id: "departure_terminal",
           title: "Address",
           type: "text",
           xs: 12,
         },
         {
-          id: "titleArrival",
+          id: "title",
           title: "Arrival",
           type: "title",
           xs: 12,
         },
         {
-          id: "arrivalDate",
+          id: "arrival_at",
           title: "Arrival Date",
           type: "date",
           xs: 8,
+          hasMinimumDate: "departure_at",
         },
         {
-          id: "arrivalTime",
+          id: "arrival_at",
           title: "Time",
           type: "time",
           xs: 4,
+          hasMinimumDate: "departure_at",
         },
         {
-          id: "arrivalTerminal",
+          id: "arrival_terminal",
           title: "Terminal",
           type: "text",
           xs: 6,
         },
         {
-          id: "arrivalGate",
+          id: "arrival_gate",
           title: "Gate",
           type: "text",
           xs: 6,
         },
         {
-          id: "arrivalAddress",
+          id: "arrival_address",
           title: "Address",
           type: "text",
           xs: 12,
@@ -445,19 +299,19 @@ export const planFormFields = (planType: PlanType): FormField[] => {
     case "restaurant":
       return [
         {
-          id: "restaurant",
+          id: "name",
           title: "Restaurant",
           type: "text",
           xs: 12,
         },
         {
-          id: "date",
+          id: "start_at",
           title: "Date",
           type: "date",
           xs: 8,
         },
         {
-          id: "time",
+          id: "start_at",
           title: "Time",
           type: "time",
           xs: 4,
@@ -490,7 +344,7 @@ export const planFormFields = (planType: PlanType): FormField[] => {
     case "boat":
       return [
         {
-          id: "boatName",
+          id: "name",
           title: "Boat Name",
           type: "text",
           xs: 12,
@@ -502,19 +356,19 @@ export const planFormFields = (planType: PlanType): FormField[] => {
           xs: 12,
         },
         {
-          id: "titleDeparture",
+          id: "title",
           title: "Departure",
           type: "title",
           xs: 12,
         },
         {
-          id: "departureDate",
+          id: "departure_at",
           title: "Departure Date",
           type: "date",
           xs: 8,
         },
         {
-          id: "departureTime",
+          id: "departure_at",
           title: "Time",
           type: "time",
           xs: 4,
@@ -532,31 +386,33 @@ export const planFormFields = (planType: PlanType): FormField[] => {
           xs: 6,
         },
         {
-          id: "address",
+          id: "departure_address",
           title: "Location / Address",
           type: "text",
           xs: 12,
         },
         {
-          id: "titleArrival",
+          id: "title",
           title: "Arrival",
           type: "title",
           xs: 12,
         },
         {
-          id: "arrivalDate",
+          id: "arrival_at",
           title: "Arrival Date",
           type: "date",
           xs: 8,
+          hasMinimumDate: "departure_at",
         },
         {
-          id: "arrivalTime",
+          id: "arrival_at",
           title: "Time",
           type: "time",
           xs: 4,
+          hasMinimumDate: "departure_at",
         },
         {
-          id: "arrivalAddress",
+          id: "arrival_address",
           title: "Location / Address",
           type: "text",
           xs: 12,
@@ -565,8 +421,8 @@ export const planFormFields = (planType: PlanType): FormField[] => {
     case "train":
       return [
         {
-          id: "boatName",
-          title: "Boat Name",
+          id: "name",
+          title: "Train Name",
           type: "text",
           xs: 12,
         },
@@ -577,19 +433,19 @@ export const planFormFields = (planType: PlanType): FormField[] => {
           xs: 12,
         },
         {
-          id: "titleDeparture",
+          id: "title",
           title: "Departure",
           type: "title",
           xs: 12,
         },
         {
-          id: "departureDate",
+          id: "departure_at",
           title: "Departure Date",
           type: "date",
           xs: 8,
         },
         {
-          id: "departureTime",
+          id: "departure_at",
           title: "Time",
           type: "time",
           xs: 4,
@@ -607,31 +463,33 @@ export const planFormFields = (planType: PlanType): FormField[] => {
           xs: 6,
         },
         {
-          id: "address",
+          id: "departure_address",
           title: "Location / Address",
           type: "text",
           xs: 12,
         },
         {
-          id: "titleArrival",
+          id: "title",
           title: "Arrival",
           type: "title",
           xs: 12,
         },
         {
-          id: "arrivalDate",
+          id: "arrival_at",
           title: "Arrival Date",
           type: "date",
           xs: 8,
+          hasMinimumDate: "departure_at",
         },
         {
-          id: "arrivalTime",
+          id: "arrival_at",
           title: "Time",
           type: "time",
           xs: 4,
+          hasMinimumDate: "departure_at",
         },
         {
-          id: "arrivalAddress",
+          id: "arrival_address",
           title: "Location / Address",
           type: "text",
           xs: 12,
@@ -640,7 +498,7 @@ export const planFormFields = (planType: PlanType): FormField[] => {
     case "carRental":
       return [
         {
-          id: "rentalAgency",
+          id: "rental_agency",
           title: "Rental Agency",
           type: "text",
           xs: 12,
@@ -652,61 +510,61 @@ export const planFormFields = (planType: PlanType): FormField[] => {
           xs: 12,
         },
         {
-          id: "titlePickup",
+          id: "title",
           title: "Pickup",
           type: "title",
           xs: 12,
         },
         {
-          id: "pickupDate",
+          id: "pickup_at",
           title: "Pickup Date",
           type: "date",
           xs: 8,
         },
         {
-          id: "pickupTime",
+          id: "pickup_at",
           title: "Time",
           type: "time",
           xs: 4,
         },
         {
-          id: "pickupAddress",
+          id: "pickup_address",
           title: "Location / Address",
           type: "text",
           xs: 12,
         },
         {
-          id: "pickupPhone",
+          id: "pickup_phone",
           title: "Phone",
           type: "text",
           xs: 12,
         },
         {
-          id: "titleDropOff",
+          id: "title",
           title: "Drop-Off",
           type: "title",
           xs: 12,
         },
         {
-          id: "dropOffDate",
+          id: "drop_off_at",
           title: "Drop-Off Date",
           type: "date",
           xs: 8,
         },
         {
-          id: "dropOffTime",
+          id: "drop_off_at",
           title: "Time",
           type: "time",
           xs: 4,
         },
         {
-          id: "dropOffAddress",
+          id: "drop_off_addrress",
           title: "Location / Address",
           type: "text",
           xs: 12,
         },
         {
-          id: "dropOffPhone",
+          id: "drop_off_phone",
           title: "Phone",
           type: "text",
           xs: 12,
@@ -715,31 +573,31 @@ export const planFormFields = (planType: PlanType): FormField[] => {
     default:
       return [
         {
-          id: "eventName",
+          id: "name",
           title: plans[planType].name,
           type: "text",
           xs: 12,
         },
         {
-          id: "startDate",
+          id: "start_at",
           title: "Start Date",
           type: "date",
           xs: 8,
         },
         {
-          id: "startTime",
+          id: "start_at",
           title: "Time",
           type: "time",
           xs: 4,
         },
         {
-          id: "endDate",
+          id: "end_at",
           title: "End Date",
           type: "date",
           xs: 8,
         },
         {
-          id: "endTime",
+          id: "end_at",
           title: "Time",
           type: "time",
           xs: 4,
@@ -767,6 +625,183 @@ export const planFormFields = (planType: PlanType): FormField[] => {
           title: "Email",
           type: "text",
           xs: 12,
+        },
+      ];
+  }
+};
+
+export const initPlanValues = (planType: PlanType): Plan => {
+  const values = { expense: 0, plan_type: planType };
+  switch (planType) {
+    case "lodging":
+      return {
+        ...values,
+        name: "",
+        checkin_at: moment().format("YYYY-MM-DDTHH:mm"),
+        checkout_at: moment().format("YYYY-MM-DDTHH:mm"),
+        address: "",
+        phone: "",
+        email: "",
+      };
+    case "flight":
+      return {
+        ...values,
+        name: "",
+        airline: "",
+        coach: "",
+        seat: "",
+        departure_at: moment().format("YYYY-MM-DDTHH:mm"),
+        departure_address: "",
+        departure_terminal: "",
+        departure_gate: "",
+        arrival_at: moment().format("YYYY-MM-DDTHH:mm"),
+        arrival_address: "",
+        arrival_terminal: "",
+        arrival_gate: "",
+      };
+    case "restaurant":
+      return {
+        ...values,
+        name: "",
+        start_at: moment().format("YYYY-MM-DDTHH:mm"),
+        address: "",
+        phone: "",
+        email: "",
+      };
+    case "boat":
+      return {
+        ...values,
+        name: "",
+        coach: "",
+        seat: "",
+        departure_at: moment().format("YYYY-MM-DDTHH:mm"),
+        departure_address: "",
+        arrival_at: moment().format("YYYY-MM-DDTHH:mm"),
+        arrival_address: "",
+      };
+    case "train":
+      return {
+        ...values,
+        name: "",
+        coach: "",
+        seat: "",
+        departure_at: moment().format("YYYY-MM-DDTHH:mm"),
+        departure_address: "",
+        arrival_at: moment().format("YYYY-MM-DDTHH:mm"),
+        arrival_address: "",
+      };
+    case "carRental":
+      return {
+        ...values,
+        name: "",
+        rental_agency: "",
+        pickup_at: moment().format("YYYY-MM-DDTHH:mm"),
+        pickup_address: "",
+        pickup_phone: "",
+        drop_off_at: moment().format("YYYY-MM-DDTHH:mm"),
+        drop_off_addrress: "",
+        drop_off_phone: "",
+      };
+    default:
+      return {
+        ...values,
+        name: "",
+        start_at: moment().format("YYYY-MM-DDTHH:mm"),
+        end_at: moment().format("YYYY-MM-DDTHH:mm"),
+        phone: "",
+        address: "",
+        email: "",
+      };
+  }
+};
+
+export interface PlanTypeItemProps {
+  planType: PlanType;
+  titleRight: string;
+  valueLeft: string;
+  descriptionRight: string;
+  datetime: string;
+}
+
+export const formatPlanByPlanItem = (plan: Plan): PlanTypeItemProps[] => {
+  switch (plan.plan_type) {
+    case "lodging":
+      return [
+        {
+          titleRight: plan.name!,
+          descriptionRight: `Checkin: ${formatStringTime(plan.checkin_at!)}`,
+          valueLeft: "",
+          datetime: formatDatetime(plan.checkin_at!),
+          planType: plan.plan_type,
+        },
+        {
+          titleRight: plan.name!,
+          descriptionRight: `Checkout: ${formatStringTime(plan.checkout_at!)}`,
+          valueLeft: "",
+          datetime: formatDatetime(plan.checkout_at!),
+          planType: plan.plan_type,
+        },
+      ];
+
+    case "carRental":
+      return [
+        {
+          titleRight: plan.rental_agency!,
+          descriptionRight: `Pick up: ${formatStringTime(plan.pickup_at!)}`,
+          valueLeft: "",
+          datetime: formatDatetime(plan.pickup_at!),
+          planType: plan.plan_type,
+        },
+        {
+          titleRight: plan.rental_agency!,
+          descriptionRight: `Drop-off: ${formatStringTime(plan.drop_off_at!)}`,
+          valueLeft: "",
+          datetime: formatDatetime(plan.drop_off_at!),
+          planType: plan.plan_type,
+        },
+      ];
+
+    case "flight":
+      return [
+        {
+          titleRight: "Flight",
+          descriptionRight: `${plan.airline}\nArriving in ${getRangeTime(plan.departure_at!, plan.arrival_at!)} at ${formatStringTime(plan.pickup_at!)}`,
+          valueLeft: formatStringTime(plan.departure_at!),
+          datetime: formatDatetime(plan.departure_at!),
+          planType: plan.plan_type,
+        },
+      ];
+
+    case "boat":
+      return [
+        {
+          titleRight: plan.name!,
+          descriptionRight: plan.arrival_at!,
+          valueLeft: formatStringTime(plan.departure_at!),
+          datetime: formatDatetime(plan.departure_at!),
+          planType: plan.plan_type,
+        },
+      ];
+
+    case "train":
+      return [
+        {
+          titleRight: plan.name!,
+          descriptionRight: plan.arrival_at!,
+          valueLeft: formatStringTime(plan.departure_at!),
+          datetime: formatDatetime(plan.departure_at!),
+          planType: plan.plan_type,
+        },
+      ];
+
+    default:
+      return [
+        {
+          titleRight: plan.name!,
+          descriptionRight: "",
+          valueLeft: formatStringTime(plan.start_at!),
+          datetime: formatDatetime(plan.start_at!),
+          planType: plan.plan_type,
         },
       ];
   }
