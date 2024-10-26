@@ -1,68 +1,21 @@
-import TextField from "@/components/TextField";
-import AppBarTrip from "@/components/Trip/AppBar";
+import TextField from "@/components/Form/Field/TextField";
+import TripTypeTab from "@/components/Trip/TripTypeTab";
 import TripCard from "@/components/Trip/TripCard";
-import { images } from "@/constants/images";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-const data = [
-  {
-    id: 1,
-    name: "Trip 1",
-    image: images.onboarding1,
-    expense: 0,
-    startDate: "",
-    endDate: "12 - 13 July 2024",
-  },
-  {
-    id: 2,
-    name: "Trip 2",
-    image: images.onboarding2,
-    expense: 0,
-    startDate: "",
-    endDate: "12 - 13 July 2024",
-  },
-  {
-    id: 3,
-    name: "Trip 3",
-    image: images.onboarding2,
-    expense: 0,
-    startDate: "",
-    endDate: "12 - 13 July 2024",
-  },
-  {
-    id: 4,
-    name: "Trip 4",
-    image: images.onboarding2,
-    expense: 0,
-    startDate: "",
-    endDate: "12 - 13 July 2024",
-  },
-  {
-    id: 5,
-    name: "Trip 5",
-    image: images.onboarding2,
-    expense: 0,
-    startDate: "",
-    endDate: "12 - 13 July 2024",
-  },
-];
+import { trips } from "@/constants/trips";
 
 const TripScreen = () => {
-  const { activeCreateTrip } = useLocalSearchParams();
-  console.log("activeCreateTrip: ", activeCreateTrip);
-
   const [tab, setTab] = useState(1);
   const [search, setSearch] = useState("");
 
   return (
     <SafeAreaView className="h-full bg-white">
       <View className="flex h-full w-full items-center">
-        <AppBarTrip tab={tab} setTab={setTab} />
-        <ScrollView className="mt-4 w-full">
+        <TripTypeTab tab={tab} setTab={setTab} />
+        <ScrollView className="mt-2 w-full">
           <View className="m-auto w-11/12">
             <TextField
               wrapperStyle="w-full"
@@ -72,9 +25,20 @@ const TripScreen = () => {
               onChangeText={(value) => setSearch(value)}
             />
 
-            <View className="mt-6 w-full space-y-2">
-              {data.map((trip, index) => (
-                <TripCard key={trip.id} trip={trip} />
+            <View className="mt-4 w-full space-y-2">
+              {trips.map((trip, index) => (
+                <TripCard
+                  key={index}
+                  id={index}
+                  name={trip.name}
+                  image={trip.image_url}
+                  startDate={trip.start_date}
+                  endDate={trip.end_date}
+                  expense={trip.plans.reduce(
+                    (pre, cur) => pre + cur.expense,
+                    0,
+                  )}
+                />
               ))}
             </View>
           </View>

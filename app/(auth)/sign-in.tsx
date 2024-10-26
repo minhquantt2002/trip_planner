@@ -6,7 +6,7 @@ import {
   View,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import TextField from "@/components/TextField";
+import TextField from "@/components/Form/Field/TextField";
 import Button from "@/components/Button";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "@/constants/images";

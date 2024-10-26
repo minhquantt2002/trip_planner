@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import TextField from "@/components/TextField";
+import TextField from "@/components/Form/Field/TextField";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
@@ -11,7 +11,7 @@ const EditProfileScreen = () => {
   };
 
   const onCancel = () => {
-    //TODO confirm un save change.
+    //TODO confirm un save change .
     router.back();
   };
 

@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Trip 1",
+    "image_url": "////",
+    "start_date": "2024-09-15",
+    "end_date": "2024-09-26",
+    "plans": [
+      {
+        "plan_type": "lodging",
+        "name": "Lodging",
+        "checkin_at": "2024-09-10T08:00",
+        "checkout_at": "2024-09-10T10:00",
+        "expense": "100",
+        "address": "HN - VN",
+        "phone": "0987654321",
+        "email": "anhquankk51@gmai.com",
+        "document": "////"
+      },
+      {
+        "plan_type": "flight",
+        "airline": "VN Airline",
+        "departure": {
+          "datetime": "2024-09-10T08:00",
+          "address": "HN - VN",
+          "terminal": "B",
+          "gate": "A",
+          "seat": "AA",
+          "coach": "BB"
+        },
+        "arrival": {
+          "datetime": "2024-09-10T08:00",
+          "address": "HN - VN",
+          "terminal": "B",
+          "gate": "A"
+        },
+        "expense": "1000",
+        "document": "////"
+      },
+      {
+        "plan_type": "restaurant",
+        "name": "Restaurant",
+        "datetime": "2024-09-10T08:00",
+        "expense": "100",
+        "address": "HN - VN",
+        "phone": "0987654321",
+        "email": "anhquankk51@gmai.com",
+        "document": "////"
+      },
+      {
+        "plan_type": "tour",
+        "name": "Tour",
+        "start_time": "2024-09-10T08:00",
+        "end_time": "2024-09-10T08:00",
+        "expense": "100",
+        "address": "HN - VN",
+        "phone": "0987654321",
+        "email": "anhquankk51@gmai.com",
+        "document": "////"
+      },
+      {
+        "plan_type": "boat",
+        "name": "Boat",
+        "coach": "B",
+        "seat": "A",
+        "departure": { "datetime": "2024-09-10T08:00", "address": "HN - VN" },
+        "arrival": { "datetime": "2024-09-10T08:00", "address": "HN - VN" },
+        "document": "////"
+      },
+      {
+        "plan_type": "train",
+        "name": "Train",
+        "coach": "B",
+        "seat": "A",
+        "departure": { "datetime": "2024-09-10T08:00", "address": "HN - VN" },
+        "arrival": { "datetime": "2024-09-10T08:00", "address": "HN - VN" },
+        "document": "////"
+      },
+      {
+        "plan_type": "meeting",
+        "name": "Meeting",
+        "start_time": "2024-09-10T08:00",
+        "end_time": "2024-09-10T08:00",
+        "expense": "100",
+        "address": "HN - VN",
+        "phone": "0987654321",
+        "email": "anhquankk51@gmai.com",
+        "document": "////"
+      },
+      {
+        "plan_type": "concert",
+        "name": "Concert",
+        "start_time": "2024-09-10T08:00",
+        "end_time": "2024-09-10T08:00",
+        "expense": "100",
+        "address": "HN - VN",
+        "phone": "0987654321",
+        "email": "anhquankk51@gmai.com",
+        "document": "////"
+      },
+      {
+        "plan_type": "carRental",
+        "rentalAgency": "Car Rental",
+        "pickup": {
+          "datetime": "2024-09-10T08:00",
+          "addrress": "HN - VN",
+          "phone": "0987654321"
+        },
+        "drop_off": {
+          "datetime": "2024-09-10T08:00",
+          "addrress": "HN - VN",
+          "phone": "0987654321"
+        },
+        "expense": "1000",
+        "document": "////"
+      },
+      {
+        "plan_type": "note",
+        "name": "Note",
+        "start_time": "2024-09-10T08:00",
+        "end_time": "2024-09-10T08:00",
+        "expense": "100",
+        "address": "HN - VN",
+        "phone": "0987654321",
+        "email": "anhquankk51@gmai.com",
+        "document": "////"
+      },
+      {
+        "plan_type": "theater",
+        "name": "Theater",
+        "start_time": "2024-09-10T08:00",
+        "end_time": "2024-09-10T08:00",
+        "expense": "100",
+        "address": "HN - VN",
+        "phone": "0987654321",
+        "email": "anhquankk51@gmai.com",
+        "document": "////"
+      },
+      {
+        "plan_type": "shopping",
+        "name": "Shopping",
+        "start_time": "2024-09-10T08:00",
+        "end_time": "2024-09-10T08:00",
+        "expense": "100",
+        "address": "HN - VN",
+        "phone": "0987654321",
+        "email": "anhquankk51@gmai.com",
+        "document": "////"
+      },
+      {
+        "plan_type": "activity",
+        "name": "Activity",
+        "start_time": "2024-09-10T08:00",
+        "end_time": "2024-09-10T08:00",
+        "expense": "100",
+        "address": "HN - VN",
+        "phone": "0987654321",
+        "email": "anhquankk51@gmai.com",
+        "document": "////"
+      }
+    ]
+  }
+]
