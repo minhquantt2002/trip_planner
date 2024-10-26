@@ -1,10 +1,10 @@
-import { plans } from "@/constants/plans";
-import { Plan, PlanType } from "@/types/types";
-import { PlanTypeItemProps } from "@/utils/plan";
+import { PlanTypeItemProps, planTypes } from "@/constants/plans";
+import { router } from "expo-router";
 import moment from "moment";
 import { Text, TouchableOpacity, View } from "react-native";
 
 interface PlanItemProps {
+  planId: string;
   isFirst?: boolean;
   isLast?: boolean;
   valueLeft?: string;
@@ -21,6 +21,7 @@ interface PlanLineProps {
 }
 
 const PlanItem = ({
+  planId,
   isFirst,
   isLast,
   planType,
@@ -31,9 +32,15 @@ const PlanItem = ({
   return (
     <TouchableOpacity
       className={`mx-auto w-11/12 flex-row items-start space-x-3 ${isFirst ? "mt-1.5" : ""}`}
-      onPress={() => {
-        //
-      }}
+      onPress={() =>
+        router.push({
+          pathname: "/(tabs)/(trip)/(plan)/plan-details/[id]",
+          params: {
+            id: planId,
+            tripIndex: "1",
+          },
+        })
+      }
     >
       <View className="flex-row space-x-1">
         <Text className="mt-4 w-14 text-center font-InterSemiBold">
@@ -44,7 +51,7 @@ const PlanItem = ({
             className={`h-2 w-1 ${isFirst ? "bg-white" : "bg-primaryColor"}`}
           />
           <View className="h-9 w-9 rounded-full bg-primaryColor p-1">
-            {plans[planType].icon}
+            {planTypes[planType].icon}
           </View>
           <View
             className={`w-1 flex-1 ${isLast ? "bg-white" : "bg-primaryColor"}`}
@@ -72,6 +79,7 @@ const PlanLine = ({ date, isFirstLine, isLastLine, plans }: PlanLineProps) => {
         {plans.map((plan, index) => (
           <PlanItem
             key={index}
+            planId={plan.id}
             isLast={index === plans.length - 1 && isLastLine}
             isFirst={index === 0 && isFirstLine}
             planType={plan.planType}

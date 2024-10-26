@@ -65,16 +65,26 @@ declare interface Activity {
   end_at?: string;
 }
 
+declare type CreatePlan = Activity &
+  Flight &
+  CarRental &
+  BoatTrain &
+  Lodging & { title?: string };
+
+declare type Plan = Activity &
+  Flight &
+  CarRental &
+  BoatTrain &
+  Lodging & { id: string };
 
 declare interface Trip {
+  id: string;
   name: string;
   image_url: string;
   start_date: string;
   end_date: string;
   plans: Plan[];
 }
-
-declare type Plan  = Activity & Flight & CarRental & BoatTrain & Lodging & {title?: string};
 
 declare type PlanType =
   | "lodging"

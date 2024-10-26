@@ -1,5 +1,5 @@
 import AppBar from "@/components/AppBar";
-import { listPlans } from "@/constants/plans";
+import { planTypes } from "@/constants/plans";
 import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
 import {
@@ -25,7 +25,7 @@ const SelectPlanScreen = () => {
         />
         <ScrollView className="my-2 w-full">
           <View className="flex-col">
-            {listPlans.map((item, index) => (
+            {Object.entries(planTypes).map(([key, item], index) => (
               <TouchableOpacity
                 key={index}
                 className={`w-full items-center border-b-[1px] border-inactiveColor ${index === 0 ? "border-t-[1px]" : ""}`}
@@ -33,7 +33,7 @@ const SelectPlanScreen = () => {
                   router.push({
                     pathname: "/(tabs)/(trip)/(plan)/create-plan",
                     params: {
-                      planType: item.id,
+                      planType: key,
                     },
                   });
                 }}

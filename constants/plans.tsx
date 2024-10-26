@@ -7,7 +7,7 @@ import {
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import moment from "moment";
 
-export const plans = {
+export const planTypes = {
   lodging: {
     name: "Lodging",
     icon: <MaterialCommunityIcons name="bed-king" size={28} color="white" />,
@@ -62,79 +62,7 @@ export const plans = {
   },
 };
 
-export const listPlans: {
-  id: PlanType;
-  name: string;
-  icon: React.JSX.Element;
-}[] = [
-  {
-    id: "lodging",
-    name: "Lodging",
-    icon: <MaterialCommunityIcons name="bed-king" size={28} color="white" />,
-  },
-  {
-    id: "flight",
-    name: "Flight",
-    icon: <MaterialCommunityIcons name="airplane" size={28} color="white" />,
-  },
-  {
-    id: "restaurant",
-    name: "Restaurant",
-    icon: <MaterialIcons name="restaurant" size={28} color="white" />,
-  },
-  {
-    id: "tour",
-    name: "Tour",
-    icon: <MaterialCommunityIcons name="flag" size={28} color="white" />,
-  },
-  {
-    id: "boat",
-    name: "Boat",
-    icon: <MaterialIcons name="directions-boat" size={28} color="white" />,
-  },
-  {
-    id: "train",
-    name: "Train",
-    icon: <MaterialCommunityIcons name="train" size={28} color="white" />,
-  },
-  {
-    id: "meeting",
-    name: "Meeting",
-    icon: <MaterialCommunityIcons name="laptop" size={28} color="white" />,
-  },
-  {
-    id: "concert",
-    name: "Concert",
-    icon: <MaterialIcons name="music-note" size={28} color="white" />,
-  },
-  {
-    id: "carRental",
-    name: "Car Rental",
-    icon: <MaterialCommunityIcons name="car" size={28} color="white" />,
-  },
-  {
-    id: "note",
-    name: "Note",
-    icon: <MaterialIcons name="event-note" size={28} color="white" />,
-  },
-  {
-    id: "theater",
-    name: "Theater",
-    icon: <MaterialIcons name="theaters" size={28} color="white" />,
-  },
-  {
-    id: "shopping",
-    name: "Shopping",
-    icon: <MaterialIcons name="shopping-cart" size={28} color="white" />,
-  },
-  {
-    id: "activity",
-    name: "Activity",
-    icon: <MaterialIcons name="directions-walk" size={28} color="white" />,
-  },
-];
-
-export const planFormFields = (planType: PlanType): FormField<Plan>[] => {
+export const planFormFields = (planType: PlanType): FormField<CreatePlan>[] => {
   switch (planType) {
     case "lodging":
       return [
@@ -574,7 +502,7 @@ export const planFormFields = (planType: PlanType): FormField<Plan>[] => {
       return [
         {
           id: "name",
-          title: plans[planType].name,
+          title: planTypes[planType].name,
           type: "text",
           xs: 12,
         },
@@ -630,7 +558,7 @@ export const planFormFields = (planType: PlanType): FormField<Plan>[] => {
   }
 };
 
-export const initPlanValues = (planType: PlanType): Plan => {
+export const initPlanValues = (planType: PlanType): CreatePlan => {
   const values = { expense: 0, plan_type: planType };
   switch (planType) {
     case "lodging":
@@ -716,6 +644,7 @@ export const initPlanValues = (planType: PlanType): Plan => {
 };
 
 export interface PlanTypeItemProps {
+  id: string;
   planType: PlanType;
   titleRight: string;
   valueLeft: string;
@@ -723,11 +652,12 @@ export interface PlanTypeItemProps {
   datetime: string;
 }
 
-export const formatPlanByPlanItem = (plan: Plan): PlanTypeItemProps[] => {
+export const formatPlanForPlanLine = (plan: Plan): PlanTypeItemProps[] => {
   switch (plan.plan_type) {
     case "lodging":
       return [
         {
+          id: plan.id,
           titleRight: plan.name!,
           descriptionRight: `Checkin: ${formatStringTime(plan.checkin_at!)}`,
           valueLeft: "",
@@ -735,6 +665,7 @@ export const formatPlanByPlanItem = (plan: Plan): PlanTypeItemProps[] => {
           planType: plan.plan_type,
         },
         {
+          id: plan.id,
           titleRight: plan.name!,
           descriptionRight: `Checkout: ${formatStringTime(plan.checkout_at!)}`,
           valueLeft: "",
@@ -746,6 +677,7 @@ export const formatPlanByPlanItem = (plan: Plan): PlanTypeItemProps[] => {
     case "carRental":
       return [
         {
+          id: plan.id,
           titleRight: plan.rental_agency!,
           descriptionRight: `Pick up: ${formatStringTime(plan.pickup_at!)}`,
           valueLeft: "",
@@ -753,6 +685,7 @@ export const formatPlanByPlanItem = (plan: Plan): PlanTypeItemProps[] => {
           planType: plan.plan_type,
         },
         {
+          id: plan.id,
           titleRight: plan.rental_agency!,
           descriptionRight: `Drop-off: ${formatStringTime(plan.drop_off_at!)}`,
           valueLeft: "",
@@ -764,6 +697,7 @@ export const formatPlanByPlanItem = (plan: Plan): PlanTypeItemProps[] => {
     case "flight":
       return [
         {
+          id: plan.id,
           titleRight: "Flight",
           descriptionRight: `${plan.airline}\nArriving in ${getRangeTime(plan.departure_at!, plan.arrival_at!)} at ${formatStringTime(plan.pickup_at!)}`,
           valueLeft: formatStringTime(plan.departure_at!),
@@ -775,6 +709,7 @@ export const formatPlanByPlanItem = (plan: Plan): PlanTypeItemProps[] => {
     case "boat":
       return [
         {
+          id: plan.id,
           titleRight: plan.name!,
           descriptionRight: plan.arrival_at!,
           valueLeft: formatStringTime(plan.departure_at!),
@@ -786,6 +721,7 @@ export const formatPlanByPlanItem = (plan: Plan): PlanTypeItemProps[] => {
     case "train":
       return [
         {
+          id: plan.id,
           titleRight: plan.name!,
           descriptionRight: plan.arrival_at!,
           valueLeft: formatStringTime(plan.departure_at!),
@@ -797,6 +733,7 @@ export const formatPlanByPlanItem = (plan: Plan): PlanTypeItemProps[] => {
     default:
       return [
         {
+          id: plan.id,
           titleRight: plan.name!,
           descriptionRight: "",
           valueLeft: formatStringTime(plan.start_at!),

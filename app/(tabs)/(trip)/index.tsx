@@ -1,7 +1,6 @@
 import TextField from "@/components/Form/Field/TextField";
 import TripTypeTab from "@/components/Trip/TripTypeTab";
 import TripCard from "@/components/Trip/TripCard";
-import { images } from "@/constants/images";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { View, Text, ScrollView } from "react-native";

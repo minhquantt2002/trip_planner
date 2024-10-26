@@ -10,7 +10,7 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Menu, Provider } from "react-native-paper";
 import { trips } from "@/constants/trips";
-import { PlanTypeItemProps, formatPlanByPlanItem } from "@/constants/plans";
+import { PlanTypeItemProps, formatPlanForPlanLine } from "@/constants/plans";
 
 const TripDetailScreen = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -35,7 +35,7 @@ const TripDetailScreen = () => {
     () =>
       trip.plans
         .reduce<PlanTypeItemProps[]>((pre, cur) => {
-          return [...pre, ...formatPlanByPlanItem(cur)];
+          return [...pre, ...formatPlanForPlanLine(cur)];
         }, [])
         .sort((a, b) => {
           return a.datetime.localeCompare(b.datetime);
@@ -57,8 +57,9 @@ const TripDetailScreen = () => {
               </TouchableOpacity>
             }
             childRight={
-              <View className="flex-row items-center justify-around">
+              <View className="flex-row items-center justify-end pr-1.5">
                 <TouchableOpacity
+                  className="pr-3"
                   onPress={() =>
                     router.push("/(tabs)/(trip)/(plan)/select-plan")
                   }

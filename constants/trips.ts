@@ -1,5 +1,6 @@
 export const trips: Trip[] = [
   {
+    id: "1",
     name: "Trip 1",
     image_url:
       "https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp",
@@ -7,6 +8,7 @@ export const trips: Trip[] = [
     end_date: "2024-11-10",
     plans: [
       {
+        id: "1",
         plan_type: "lodging",
         name: "Luxury Hotel",
         airline: "Air France",
@@ -19,8 +21,9 @@ export const trips: Trip[] = [
         document: "https://example.com/luxury_hotel_invoice.pdf",
       },
       {
+        id: "2",
         plan_type: "flight",
-        name: '',
+        name: "",
         airline: "VN Airline",
         departure_at: "2024-11-01T10:00",
         departure_address: "New York - JFK Airport",
@@ -36,6 +39,7 @@ export const trips: Trip[] = [
         document: "https://example.com/flight_ticket.pdf",
       },
       {
+        id: "3",
         plan_type: "restaurant",
         name: "Le Gourmet",
         start_at: "2024-11-02T20:00",
@@ -48,6 +52,7 @@ export const trips: Trip[] = [
     ],
   },
   {
+    id: "2",
     name: "Trip 2",
     image_url:
       "https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg",
@@ -55,6 +60,7 @@ export const trips: Trip[] = [
     end_date: "2024-12-12",
     plans: [
       {
+        id: "1",
         plan_type: "lodging",
         name: "Mountain Resort",
         airline: "Thai Airways",
@@ -67,6 +73,7 @@ export const trips: Trip[] = [
         document: "https://example.com/resort_invoice.pdf",
       },
       {
+        id: "2",
         plan_type: "tour",
         name: "Elephant Sanctuary Tour",
         start_at: "2024-12-06T09:00",
@@ -78,13 +85,14 @@ export const trips: Trip[] = [
         document: "https://example.com/tour_ticket.pdf",
       },
       {
+        id: "3",
         plan_type: "boat",
         name: "River Cruise",
         coach: "A",
         seat: "14",
         departure_at: "2024-12-07T10:00",
         departure_address: "Chiang Mai River",
-        arrival_at: "2024-12-07T12:00", 
+        arrival_at: "2024-12-07T12:00",
         arrival_address: "Chiang Mai River",
         expense: 200,
         document: "https://example.com/boat_ticket.pdf",
@@ -92,6 +100,7 @@ export const trips: Trip[] = [
     ],
   },
   {
+    id: "3",
     name: "Trip 3",
     image_url:
       "https://i0.wp.com/picjumbo.com/wp-content/uploads/wooden-pier-free-image.jpeg?w=600&quality=80",
@@ -99,7 +108,8 @@ export const trips: Trip[] = [
     end_date: "2025-01-20",
     plans: [
       {
-        name: '',
+        name: "",
+        id: "1",
         plan_type: "flight",
         airline: "Vietjet",
         departure_at: "2025-01-10T07:00",
@@ -116,8 +126,9 @@ export const trips: Trip[] = [
         document: "https://example.com/flight_ticket.pdf",
       },
       {
+        id: "2",
         plan_type: "carRental",
-        name: '',
+        name: "",
         rental_agency: "Tokyo Car Rentals",
         pickup_at: "2025-01-11T09:00",
         pickup_address: "Tokyo Narita Airport",
@@ -129,6 +140,7 @@ export const trips: Trip[] = [
         document: "https://example.com/car_rental_receipt.pdf",
       },
       {
+        id: "3",
         plan_type: "shopping",
         name: "Akihabara Electronics",
         start_at: "2025-01-13T12:00",
