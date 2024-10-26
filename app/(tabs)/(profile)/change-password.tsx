@@ -19,7 +19,9 @@ const ChangePasswordScreen = () => {
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const onSave = () => {alert('save successfull!') };
+  const onSave = () => {
+    alert("save successfull!");
+  };
   const onCancel = () => {
     //TODO confirm un save change.
     router.back();

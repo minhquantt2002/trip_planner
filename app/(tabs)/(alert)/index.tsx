@@ -7,7 +7,7 @@ const AlertScreen = () => {
   return (
     <SafeAreaView className="h-full bg-white">
       <View className="flex h-full w-full items-center">
-        <View className="w-full flex-row items-center pt-1 mb-6">
+        <View className="mb-6 w-full flex-row items-center pt-1">
           <View className="w-11" />
           <Text className="color-black flex-1 text-center font-InterBold text-xl">
             Notification
@@ -17,7 +17,7 @@ const AlertScreen = () => {
           </View>
         </View>
         <ScrollView className="w-full">
-        {notifications.map((notification, index) => (
+          {notifications.map((notification, index) => (
             <NotificationCard
               key={index}
               trip={notification.trip}
