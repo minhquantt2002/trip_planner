@@ -1,5 +1,12 @@
-import { ButtonProps } from "@/types/types";
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
+
+interface ButtonProps extends TouchableOpacityProps {
+  title: string;
+  IconLeft?: React.ComponentType<any>;
+  IconRight?: React.ComponentType<any>;
+  className?: string;
+  textStyle?: string;
+}
 
 const Button = ({
   title,

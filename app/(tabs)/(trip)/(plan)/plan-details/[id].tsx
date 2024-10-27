@@ -1,4 +1,5 @@
 import AppBar from "@/components/AppBar";
+import { planTypes } from "@/constants/plans";
 import { trips } from "@/constants/trips";
 import { getRangeDate } from "@/utils/datetime";
 import { Feather } from "@expo/vector-icons";
@@ -9,11 +10,16 @@ import { Menu, Provider } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const PlanDetailsScreen = () => {
-  const { id, tripIndex } = useLocalSearchParams<{
+  const { id, tripId } = useLocalSearchParams<{
     id: string;
-    tripIndex: string;
+    tripId: string;
   }>();
-  const plan = trips[parseInt(tripIndex)].plans.find((v) => v.id === id);
+
+  const plan = trips
+    .find((v) => v.id === tripId)
+    ?.plans.find((v) => v.id === id);
+  const planType = planTypes[plan?.plan_type ?? "activity"];
+
   const [visible, setVisible] = useState(false);
 
   return (
@@ -21,7 +27,7 @@ const PlanDetailsScreen = () => {
       <Provider>
         <View className="flex h-full w-full items-center">
           <AppBar
-            title=""
+            title={planType.name}
             childLeft={
               <TouchableOpacity onPress={() => router.back()}>
                 <Feather name="chevron-left" size={28} color="black" />
@@ -55,9 +61,40 @@ const PlanDetailsScreen = () => {
             }
           />
           <ScrollView className="mb-2 w-full">
-            <View className="bg-neutral-300 py-1">
+            <View className="mx-auto my-2 w-11/12">
+              <Text className="font-InterBold text-lg">{plan?.name}</Text>
+              <View className="flex-row items-center justify-between">
+                <Text className="font-InterMedium">{planType.name}</Text>
+                <Text className="font-InterMedium">
+                  Expense:{" "}
+                  <Text className="font-InterBold">{plan?.expense} $</Text>
+                </Text>
+              </View>
+            </View>
+
+            <View className="my-2 bg-neutral-300 py-1">
               <Text className="mx-auto w-11/12 font-InterSemiBold">
                 {/* {getRangeDate(plan.start_date, plan.end_date)} */}
+                Mon 30 Sep - Tue 1 Oct, 2024
+              </Text>
+            </View>
+
+            <View className="my-2 bg-neutral-300 py-1">
+              <Text className="mx-auto w-11/12 font-InterSemiBold">
+                {/* {getRangeDate(plan.start_date, plan.end_date)} */} Others
+                Informations
+              </Text>
+            </View>
+
+            <View className="my-2 bg-neutral-300 py-1">
+              <Text className="mx-auto w-11/12 font-InterSemiBold">
+                Collections
+              </Text>
+            </View>
+
+            <View className="my-2 bg-neutral-300 py-1">
+              <Text className="mx-auto w-11/12 font-InterSemiBold">
+                Documents
               </Text>
             </View>
           </ScrollView>

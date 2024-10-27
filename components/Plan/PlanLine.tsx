@@ -1,19 +1,22 @@
-import { PlanTypeItemProps, planTypes } from "@/constants/plans";
+import { planTypes } from "@/constants/plans";
+import { PlanTypeItemProps } from "@/helpers/plan";
+import { datetimeToDay } from "@/utils/datetime";
 import { router } from "expo-router";
-import moment from "moment";
 import { Text, TouchableOpacity, View } from "react-native";
 
 interface PlanItemProps {
   planId: string;
+  tripId: string;
   isFirst?: boolean;
   isLast?: boolean;
   valueLeft?: string;
-  titleRight: string;
+  titleRight?: string;
   descriptionRight?: string;
   planType: PlanType;
 }
 
 interface PlanLineProps {
+  tripId: string;
   date: string;
   isFirstLine?: boolean;
   isLastLine?: boolean;
@@ -22,6 +25,7 @@ interface PlanLineProps {
 
 const PlanItem = ({
   planId,
+  tripId,
   isFirst,
   isLast,
   planType,
@@ -37,7 +41,7 @@ const PlanItem = ({
           pathname: "/(tabs)/(trip)/(plan)/plan-details/[id]",
           params: {
             id: planId,
-            tripIndex: "1",
+            tripId: tripId,
           },
         })
       }
@@ -67,19 +71,26 @@ const PlanItem = ({
   );
 };
 
-const PlanLine = ({ date, isFirstLine, isLastLine, plans }: PlanLineProps) => {
+const PlanLine = ({
+  date,
+  isFirstLine,
+  isLastLine,
+  plans,
+  tripId,
+}: PlanLineProps) => {
   return (
     plans.length !== 0 && (
       <View>
         <View className="bg-neutral-300 py-1">
           <Text className="mx-auto w-11/12 font-InterSemiBold">
-            {moment(date).format("dddd, DD MMMM YYYY")}
+            {datetimeToDay(date, "YYYY-MM-DD", "dddd, DD MMMM YYYY")}
           </Text>
         </View>
         {plans.map((plan, index) => (
           <PlanItem
             key={index}
             planId={plan.id}
+            tripId={tripId}
             isLast={index === plans.length - 1 && isLastLine}
             isFirst={index === 0 && isFirstLine}
             planType={plan.planType}

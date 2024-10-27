@@ -1,11 +1,25 @@
-import { TextFieldProps } from "@/types/types";
 import {
   Keyboard,
   Text,
   TextInput,
+  TextInputProps,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+
+interface TextFieldProps extends TextInputProps {
+  label?: string;
+  labelStyle?: string;
+  hintStyle?: string;
+  hint?: string;
+  size?: "small" | "medium" | "large";
+  IconLeft?: any;
+  IconRight?: any;
+  secureTextEntry?: boolean;
+  containerStyle?: string;
+  inputStyle?: string;
+  wrapperStyle?: string;
+}
 
 const TextField = ({
   label,
@@ -27,7 +41,7 @@ const TextField = ({
           </Text>
         )}
         <View
-          className={`flex flex-row items-center justify-between rounded-xl border-[1px] border-neutral-300 bg-white px-4 ${containerStyle}`}
+          className={`flex flex-row items-center justify-between rounded-xl border-[1px] border-neutral-300 bg-white px-2 ${containerStyle}`}
         >
           {IconLeft && IconLeft}
 

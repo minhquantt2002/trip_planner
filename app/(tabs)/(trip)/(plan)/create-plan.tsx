@@ -1,6 +1,7 @@
 import AppBar from "@/components/AppBar";
 import Form from "@/components/Form";
-import { initPlanValues, planFormFields, planTypes } from "@/constants/plans";
+import { planTypes } from "@/constants/plans";
+import { initPlanValues, planFormFields } from "@/helpers/plan";
 import { Feather } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useMemo, useState } from "react";
@@ -19,6 +20,7 @@ const CreatePlanScreen = () => {
   );
 
   const onSave = () => {
+    router.back();
     console.log(initValues);
   };
 
@@ -29,12 +31,12 @@ const CreatePlanScreen = () => {
           title={planItem.name}
           childLeft={
             <TouchableOpacity onPress={() => router.back()}>
-              <Feather name="chevron-left" size={28} color="black" />
+              <Text className="ml-1.5 text-left font-InterMedium">Cancel</Text>
             </TouchableOpacity>
           }
           childRight={
             <TouchableOpacity onPress={onSave}>
-              <Text className="mr-2.5 text-right font-InterMedium">Save</Text>
+              <Text className="mr-1.5 text-right font-InterMedium">Save</Text>
             </TouchableOpacity>
           }
         />

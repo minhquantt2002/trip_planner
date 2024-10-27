@@ -2,9 +2,9 @@ import { Text, View } from "react-native";
 import TextField from "./Field/TextField";
 import TimePicker from "./Field/TimePicker";
 import { useState } from "react";
-import { FontAwesome } from "@expo/vector-icons";
+import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import DatePicker from "./Field/DatePicker";
-import { formatStringDate, formatStringTime } from "@/utils/datetime";
+import { datetimeToDay, datetimeToTime } from "@/utils/datetime";
 
 export interface FormField<T> {
   id: Extract<keyof T, string>;
@@ -45,13 +45,17 @@ const Form = <T extends {}>({
             <>
               <TextField
                 label={field.title}
-                value={formatStringTime(String(initValues[field.id]))}
+                value={datetimeToTime(String(initValues[field.id]))}
                 onPress={() => setIsVisiblePicker(field.id + index)}
                 showSoftInputOnFocus={false}
                 caretHidden
                 labelStyle="text-gray-600"
                 IconRight={
-                  <FontAwesome name="clock-o" size={24} color="black" />
+                  <MaterialCommunityIcons
+                    name="clock-outline"
+                    size={24}
+                    color="black"
+                  />
                 }
               />
               <TimePicker
@@ -73,13 +77,17 @@ const Form = <T extends {}>({
             <>
               <TextField
                 label={field.title}
-                value={formatStringDate(String(initValues[field.id]))}
+                value={datetimeToDay(String(initValues[field.id]))}
                 onPress={() => setIsVisiblePicker(field.id + index)}
                 showSoftInputOnFocus={false}
                 caretHidden
                 labelStyle="text-gray-600"
                 IconRight={
-                  <FontAwesome name="calendar" size={24} color="black" />
+                  <MaterialIcons
+                    name="calendar-month"
+                    size={24}
+                    color="black"
+                  />
                 }
               />
               <DatePicker

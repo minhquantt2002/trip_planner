@@ -10,7 +10,7 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Menu, Provider } from "react-native-paper";
 import { trips } from "@/constants/trips";
-import { PlanTypeItemProps, formatPlanForPlanLine } from "@/constants/plans";
+import { PlanTypeItemProps, formatPlanForPlanLine } from "@/helpers/plan";
 
 const TripDetailScreen = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -38,7 +38,7 @@ const TripDetailScreen = () => {
           return [...pre, ...formatPlanForPlanLine(cur)];
         }, [])
         .sort((a, b) => {
-          return a.datetime.localeCompare(b.datetime);
+          return a.datetime?.localeCompare(b.datetime ?? "") ?? 0;
         }),
     [],
   );
@@ -50,9 +50,7 @@ const TripDetailScreen = () => {
           <AppBar
             title=""
             childLeft={
-              <TouchableOpacity
-                onPress={() => router.replace("/(tabs)/(trip)")}
-              >
+              <TouchableOpacity onPress={() => router.back()}>
                 <Feather name="chevron-left" size={28} color="black" />
               </TouchableOpacity>
             }
@@ -117,9 +115,9 @@ const TripDetailScreen = () => {
             </View>
 
             <View className="mt-4 w-full">
-              {mapTripDays().map((date, index, arr) => {
+              {mapTripDays().map((date, index) => {
                 const plans = formatedPlans.filter((v) =>
-                  v.datetime.includes(date),
+                  v.datetime?.includes(date),
                 );
                 const isLastLine = plans.includes(
                   formatedPlans[formatedPlans.length - 1],
@@ -127,6 +125,7 @@ const TripDetailScreen = () => {
                 return (
                   <PlanLine
                     key={"pl" + index}
+                    tripId={trip.id}
                     date={date}
                     isFirstLine={index === 0}
                     isLastLine={isLastLine}

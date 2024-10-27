@@ -3,8 +3,8 @@ import Button from "@/components/Button";
 import DatePicker from "@/components/Form/Field/DatePicker";
 import ImageCoverField from "@/components/Form/Field/ImageCoverField";
 import TextField from "@/components/Form/Field/TextField";
-import { formatDate } from "@/utils/datetime";
-import { Feather, FontAwesome } from "@expo/vector-icons";
+import { datetimeToDay, getCurrentDatetime } from "@/utils/datetime";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useState } from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
@@ -12,8 +12,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const CreateTripModal = () => {
   const [tripName, setTripName] = useState("");
-  const [startDate, setStartDate] = useState(formatDate(new Date()));
-  const [endDate, setEndDate] = useState(formatDate(new Date()));
+  const [startDate, setStartDate] = useState(getCurrentDatetime());
+  const [endDate, setEndDate] = useState(getCurrentDatetime());
   const [isVisible, setIsVisible] = useState(0);
 
   return (
@@ -39,23 +39,31 @@ const CreateTripModal = () => {
             />
             <TextField
               label="Start Dates"
-              value={startDate}
+              value={datetimeToDay(startDate)}
               onPress={() => setIsVisible(1)}
               showSoftInputOnFocus={false}
               caretHidden
               IconRight={
-                <FontAwesome name="calendar" size={24} color="black" />
+                <MaterialCommunityIcons
+                  name="calendar-month"
+                  size={24}
+                  color="black"
+                />
               }
               wrapperStyle="mb-4"
             />
             <TextField
               label="End Dates"
-              value={endDate}
+              value={datetimeToDay(endDate)}
               onPress={() => setIsVisible(2)}
               showSoftInputOnFocus={false}
               caretHidden
               IconRight={
-                <FontAwesome name="calendar" size={24} color="black" />
+                <MaterialCommunityIcons
+                  name="calendar-month"
+                  size={24}
+                  color="black"
+                />
               }
             />
           </View>
@@ -81,7 +89,7 @@ const CreateTripModal = () => {
         handleCancel={() => setIsVisible(0)}
         handleConfirm={(value) => {
           setIsVisible(0);
-          setStartDate(formatDate(value));
+          setStartDate(value);
         }}
       />
 
@@ -92,7 +100,7 @@ const CreateTripModal = () => {
         minimumDate={startDate}
         handleConfirm={(value) => {
           setIsVisible(0);
-          setEndDate(formatDate(value));
+          setEndDate(value);
         }}
       />
     </SafeAreaView>

@@ -1,26 +1,37 @@
 import moment from "moment";
 
-export const formatDate = (date: Date): string => {
-  return moment(date).format("ddd, DD MMM YYYY");
+export const getCurrentDatetime = (
+  format: string = "YYYY-MM-DDTHH:mm",
+): string => {
+  return moment().format(format);
 };
 
-export const formatStringDate = (date: string): string => {
-  return moment(date, 'YYYY-MM-DDTHH:mm').format("ddd, DD MMM YYYY");
+export const datetimeToDay = (
+  datetime: string,
+  formatInput: string = "YYYY-MM-DDTHH:mm",
+  formatOutput: string = "ddd, DD MMM YYYY",
+): string => {
+  return moment(datetime, formatInput).format(formatOutput);
 };
 
-export const formatTime = (time: Date): string => {
-  return moment(time).format("HH:mm");
+export const dateToTime = (date: Date): string => {
+  return moment(date).format("HH:mm");
 };
 
-export const formatStringTime = (time: string): string => {
-  return moment(time).format("HH:mm");
+export const datetimeToTime = (datetime?: string): string => {
+  return moment(datetime, "YYYY-MM-DDTHH:mm").format("HH:mm");
 };
 
-export const formatDatetime = (datetime: string): string => {
-  return moment(datetime).format("YYYY-MM-DDTHH:mm");
+export const formattedDateHasNaN = (datetime?: string): Date | undefined => {
+  const formattedDate = moment(datetime, "YYYY-MM-DDTHH:mm").toDate();
+  return isNaN(formattedDate.getDate()) ? undefined : formattedDate;
 };
 
-export const getRangeTime = (startTime: string, endTime: string): string => {
+export const dateToDatetime = (date: Date): string => {
+  return moment(date).format("YYYY-MM-DDTHH:mm");
+};
+
+export const getRangeTime = (startTime?: string, endTime?: string): string => {
   const startTimeMoment = moment(startTime);
   const endTimeMoment = moment(endTime);
   const duration = moment.duration(endTimeMoment.diff(startTimeMoment));
@@ -29,7 +40,7 @@ export const getRangeTime = (startTime: string, endTime: string): string => {
   return `${hours} hrs ${minutes}`;
 };
 
-export const getRangeDate = (startDate: string, endDate: string): string => {
+export const getRangeDate = (startDate?: string, endDate?: string): string => {
   const startDateMoment = moment(startDate);
   const endDateMoment = moment(endDate);
   let rangeDate = endDateMoment.format("ddd, D MMM YYYY");
