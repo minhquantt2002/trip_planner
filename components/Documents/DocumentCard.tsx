@@ -46,7 +46,7 @@ const DocumentCard = (props: DocumentData) => {
   };
 
   const handleDelete = () => {
-    console.log("Xóa tài liệu");
+    console.log("Delete document");
     closeMenu();
   };
 
@@ -63,8 +63,8 @@ const DocumentCard = (props: DocumentData) => {
           }
           anchorPosition="bottom"
         >
-          <Menu.Item onPress={handleEdit} title="Sửa" />
-          <Menu.Item onPress={handleDelete} title="Xóa" />
+          <Menu.Item onPress={handleEdit} title="Edit document" />
+          <Menu.Item onPress={handleDelete} title="Delete document" />
         </Menu>
       </View>
 

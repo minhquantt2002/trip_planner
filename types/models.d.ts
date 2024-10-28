@@ -100,3 +100,11 @@ declare type PlanType =
   | "theater"
   | "shopping"
   | "activity";
+
+
+declare interface collectImages {
+  id: string;
+  trip_id:string;
+  plan_id: string;
+  imageUrls: string[];
+}

@@ -23,7 +23,7 @@ export const trips: Trip[] = [
       {
         id: "2",
         plan_type: "flight",
-        name: "",
+        name: "abc",
         airline: "VN Airline",
         departure_at: "2024-11-01T10:00",
         departure_address: "New York - JFK Airport",
@@ -60,7 +60,7 @@ export const trips: Trip[] = [
     end_date: "2024-12-12",
     plans: [
       {
-        id: "1",
+        id: "4",
         plan_type: "lodging",
         name: "Mountain Resort",
         airline: "Thai Airways",
@@ -73,7 +73,7 @@ export const trips: Trip[] = [
         document: "https://example.com/resort_invoice.pdf",
       },
       {
-        id: "2",
+        id: "5",
         plan_type: "tour",
         name: "Elephant Sanctuary Tour",
         start_at: "2024-12-06T09:00",
@@ -85,7 +85,7 @@ export const trips: Trip[] = [
         document: "https://example.com/tour_ticket.pdf",
       },
       {
-        id: "3",
+        id: "6",
         plan_type: "boat",
         name: "River Cruise",
         coach: "A",
@@ -109,7 +109,7 @@ export const trips: Trip[] = [
     plans: [
       {
         name: "",
-        id: "1",
+        id: "7",
         plan_type: "flight",
         airline: "Vietjet",
         departure_at: "2025-01-10T07:00",
@@ -126,7 +126,7 @@ export const trips: Trip[] = [
         document: "https://example.com/flight_ticket.pdf",
       },
       {
-        id: "2",
+        id: "8",
         plan_type: "carRental",
         name: "",
         rental_agency: "Tokyo Car Rentals",
@@ -140,7 +140,7 @@ export const trips: Trip[] = [
         document: "https://example.com/car_rental_receipt.pdf",
       },
       {
-        id: "3",
+        id: "9",
         plan_type: "shopping",
         name: "Akihabara Electronics",
         start_at: "2025-01-13T12:00",

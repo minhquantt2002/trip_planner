@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import { AntDesign, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
@@ -10,6 +11,8 @@ const ProfileScreen = () => {
     image: null,
   };
 
+  const signOut = () => {};
+
   return (
     <SafeAreaView className="h-full bg-white">
       <ScrollView className="w-full">
@@ -17,7 +20,7 @@ const ProfileScreen = () => {
           <Text className="text-center font-InterBold text-xl">Profile</Text>
 
           <TouchableOpacity
-            className="mx-4 mt-4 w-11/12 flex-row items-center rounded-lg bg-gray-200 p-4"
+            className="mx-4 mt-4 w-11/12 flex-row items-center rounded-lg bg-primaryColor p-4"
             onPress={() => router.push("/(tabs)/(profile)/edit-profile")}
           >
             <View className="h-16 w-16 items-center justify-center rounded-full bg-gray-300">
@@ -37,10 +40,10 @@ const ProfileScreen = () => {
           </TouchableOpacity>
 
           <View className="mt-10 w-11/12">
-            {/* <TouchableOpacity
+            <TouchableOpacity
               className="flex-row items-center justify-between border-y border-gray-200 p-4"
               onPress={() => {
-                router.push("/(tabs)/(profile)/(document)");
+                router.push("/(tabs)/(profile)/(document)/verify");
               }}
             >
               <View className="flex-row items-center">
@@ -54,10 +57,29 @@ const ProfileScreen = () => {
                 size={24}
                 color="gray"
               />
-            </TouchableOpacity> */}
+            </TouchableOpacity>
 
             <TouchableOpacity
-              className="flex-row items-center justify-between border-b border-gray-200 p-4"
+              className="flex-row items-center justify-between border-y border-gray-200 p-4"
+              onPress={() => {
+                router.push("/(tabs)/(profile)/(contact)");
+              }}
+            >
+              <View className="flex-row items-center">
+                <AntDesign name="contacts" size={24} color="black" />
+                <Text className="ml-4 font-InterRegular text-lg">
+                  Travel Contacts
+                </Text>
+              </View>
+              <MaterialIcons
+                name="keyboard-arrow-right"
+                size={24}
+                color="gray"
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              className="flex-row items-center justify-between border-y border-gray-200 p-4"
               onPress={() => {
                 router.push("/(tabs)/(profile)/change-password");
               }}
@@ -75,6 +97,12 @@ const ProfileScreen = () => {
                 color="gray"
               />
             </TouchableOpacity>
+            <Button
+              title="Sign out"
+              onPress={signOut}
+              className="mt-12 border border-primaryColor bg-white"
+              textStyle="text-primaryColor"
+            />
           </View>
         </View>
       </ScrollView>
