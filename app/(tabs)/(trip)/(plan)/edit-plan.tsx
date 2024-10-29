@@ -1,46 +1,32 @@
 import AppBar from "@/components/AppBar";
 import Form from "@/components/Form";
-import { planTypes } from "@/constants/plans";
-import { initPlanValues, planFormFields } from "@/helpers/plan";
-import { router, useLocalSearchParams } from "expo-router";
-import { useMemo, useState } from "react";
+import { router } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const CreatePlanScreen = () => {
-  const { planType } = useLocalSearchParams<{ planType: PlanType }>();
-  const planItem = planTypes[planType];
-  const formFields = useMemo(() => {
-    return planFormFields(planType);
-  }, []);
-
-  const [initValues, setInitValues] = useState<CreatePlan>(
-    initPlanValues(planType),
-  );
-
-  const onSave = () => {
-    router.back();
-    console.log(initValues);
-  };
-
+const EditPlanScreen = () => {
   return (
     <SafeAreaView className="h-full bg-white">
       <View className="flex h-full w-full items-center">
         <AppBar
-          title={planItem.name}
+          title="{planItem.name}"
           childLeft={
             <TouchableOpacity onPress={() => router.back()}>
               <Text className="ml-1.5 text-left font-InterMedium">Cancel</Text>
             </TouchableOpacity>
           }
           childRight={
-            <TouchableOpacity onPress={onSave}>
+            <TouchableOpacity
+              onPress={() => {
+                //
+              }}
+            >
               <Text className="mr-1.5 text-right font-InterMedium">Save</Text>
             </TouchableOpacity>
           }
         />
         <ScrollView className="mb-2 w-full">
-          <Form<CreatePlan>
+          {/* <Form<CreatePlan>
             initValues={initValues}
             formFields={formFields}
             onChange={(field, value) => {
@@ -49,11 +35,11 @@ const CreatePlanScreen = () => {
                 [field]: value,
               });
             }}
-          />
+          /> */}
         </ScrollView>
       </View>
     </SafeAreaView>
   );
 };
 
-export default CreatePlanScreen;
+export default EditPlanScreen;

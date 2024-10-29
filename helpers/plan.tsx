@@ -3,6 +3,7 @@ import { planTypes } from "@/constants/plans";
 import {
   datetimeToTime,
   getCurrentDatetime,
+  getRangeDate,
   getRangeTime,
 } from "@/utils/datetime";
 
@@ -430,7 +431,7 @@ export const planFormFields = (planType: PlanType): FormField<CreatePlan>[] => {
           xs: 4,
         },
         {
-          id: "drop_off_addrress",
+          id: "drop_off_address",
           title: "Location / Address",
           type: "text",
           xs: 12,
@@ -582,7 +583,7 @@ export const initPlanValues = (planType: PlanType): CreatePlan => {
         pickup_address: "",
         pickup_phone: "",
         drop_off_at: currentDatetime,
-        drop_off_addrress: "",
+        drop_off_address: "",
         drop_off_phone: "",
       };
     default:
@@ -690,6 +691,90 @@ export const formatPlanForPlanLine = (plan: Plan): PlanTypeItemProps[] => {
   }
 };
 
-export const formatPlanForPlanDetails = () => {
-  return;
+export const formatPlanForPlanDetails = (plan: Plan) => {
+  if (plan.plan_type === "lodging") {
+    return {
+      title: plan.name === "" ? planTypes[plan.plan_type].name : plan.name,
+      description: "Lodging",
+      rangeDateTime: getRangeDate(plan.checkin_at, plan.checkout_at),
+      detail: {
+        startDatetime: plan.checkin_at,
+        endDatetime: plan.checkout_at,
+        startAddress: plan.address,
+      },
+      contact: [plan.address, plan.phone, plan.email],
+    };
+  } else if (plan.plan_type === "restaurant") {
+    return {
+      title: plan.name === "" ? planTypes[plan.plan_type].name : plan.name,
+      description: "Restaurant",
+      rangeDateTime: getRangeDate(plan.start_at),
+      detail: {
+        startDatetime: plan.start_at,
+        startAddress: plan.address,
+      },
+      contact: [plan.address, plan.phone, plan.email],
+    };
+  } else if (
+    plan.plan_type === "flight" ||
+    plan.plan_type === "boat" ||
+    plan.plan_type === "train"
+  ) {
+    return {
+      title: plan.name === "" ? planTypes[plan.plan_type].name : plan.name,
+      description: `${plan.airline}\nCouch: ${plan.coach}\nSeat: ${plan.seat}`,
+      rangeDateTime: getRangeDate(plan.departure_at, plan.arrival_at),
+      detail: {
+        startDatetime: plan.departure_at,
+        endDatetime: plan.arrival_at,
+        startAddress: plan.departure_address,
+        endAddress: plan.arrival_address,
+        startGate: plan.departure_gate,
+        startTerminal: plan.departure_terminal,
+        endGate: plan.arrival_gate,
+        endTerminal: plan.arrival_terminal,
+      },
+      contact: [plan.address, plan.phone, plan.email],
+    };
+  } else if (plan.plan_type === "carRental") {
+    return {
+      title:
+        plan.rental_agency === ""
+          ? planTypes[plan.plan_type].name
+          : plan.rental_agency,
+      description: planTypes[plan.plan_type].name,
+      rangeDateTime: getRangeDate(plan.pickup_at, plan.drop_off_at),
+      detail: {
+        startDatetime: plan.pickup_at,
+        endDatetime: plan.drop_off_at,
+        startAddress: plan.pickup_address,
+        endAddress: plan.drop_off_address,
+      },
+      contact: [plan.address, plan.phone, plan.email],
+    };
+  } else {
+    return {
+      title: plan.name === "" ? planTypes[plan.plan_type].name : plan.name,
+      description: planTypes[plan.plan_type].name,
+      rangeDateTime: getRangeDate(plan.pickup_at, plan.drop_off_at),
+      detail: {
+        startDatetime: plan.start_at,
+        endDatetime: plan.end_at,
+        startAddress: plan.address,
+      },
+      contact: [plan.address, plan.phone, plan.email],
+    };
+  }
+};
+
+export const formatTitleForPlanTypeDetail = (
+  planType: PlanType,
+): [string, string] => {
+  if (planType === "lodging") {
+    return ["Check in", "Check out"];
+  } else if (planType === "carRental") {
+    return ["Pick up", "Drop off"];
+  } else {
+    return ["Start", "End"];
+  }
 };

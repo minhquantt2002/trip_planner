@@ -7,7 +7,7 @@ export const getCurrentDatetime = (
 };
 
 export const datetimeToDay = (
-  datetime: string,
+  datetime?: string,
   formatInput: string = "YYYY-MM-DDTHH:mm",
   formatOutput: string = "ddd, DD MMM YYYY",
 ): string => {
@@ -43,11 +43,16 @@ export const getRangeTime = (startTime?: string, endTime?: string): string => {
 export const getRangeDate = (startDate?: string, endDate?: string): string => {
   const startDateMoment = moment(startDate);
   const endDateMoment = moment(endDate);
+  if (!endDate && startDate) {
+    return startDateMoment.format("dddd, D MMMM YYYY");
+  }
   let rangeDate = endDateMoment.format("ddd, D MMM YYYY");
   if (startDateMoment.get("year") === endDateMoment.get("year")) {
     if (startDateMoment.get("month") === endDateMoment.get("month")) {
       if (startDateMoment.get("D") !== endDateMoment.get("D")) {
         rangeDate = startDateMoment.format("ddd, DD") + " - " + rangeDate;
+      } else {
+        rangeDate = startDateMoment.format("dddd, D MMMM YYYY");
       }
     } else {
       rangeDate = startDateMoment.format("ddd, DD MMM") + " - " + rangeDate;
@@ -62,6 +67,32 @@ export const countDays = (startDate: string, endDate: string): number => {
   const startDateMoment = moment(startDate);
   const endDateMoment = moment(endDate);
   return endDateMoment.diff(startDateMoment, "days") + 1;
+};
+
+export const calculateDuration = (
+  startDatetime?: string,
+  endDatetime?: string,
+): string => {
+  const start = moment(startDatetime, "YYYY-MM-DDTHH:mm");
+  const end = moment(endDatetime, "YYYY-MM-DDTHH:mm");
+  const duration = moment.duration(end.diff(start));
+
+  const days = Math.floor(duration.asDays());
+  const hours = duration.hours();
+  const minutes = duration.minutes();
+
+  let result = "";
+  if (minutes > 0) result += `${minutes}min`;
+  if (hours > 0) {
+    if (result !== "") result = `${hours}hrs, ` + result;
+    else result = `${hours}hrs` + result;
+  }
+  if (days > 0) {
+    if (result !== "") result = `${days}day, ` + result;
+    else result = `${days}day` + result;
+  }
+
+  return result.trim();
 };
 
 export const compareDate = (a: string, b: string): boolean => {

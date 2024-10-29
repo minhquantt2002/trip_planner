@@ -49,7 +49,7 @@ declare interface CarRental {
   pickup_address?: string;
   pickup_phone?: string;
   drop_off_at?: string;
-  drop_off_addrress?: string;
+  drop_off_address?: string;
   drop_off_phone?: string;
 }
 

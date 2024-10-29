@@ -1,8 +1,9 @@
 import AppBar from "@/components/AppBar";
+import PlanTypeDetail from "@/components/Plan/PlanTypeDetail";
 import { planTypes } from "@/constants/plans";
 import { trips } from "@/constants/trips";
-import { getRangeDate } from "@/utils/datetime";
-import { Feather } from "@expo/vector-icons";
+import { formatPlanForPlanDetails } from "@/helpers/plan";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
@@ -18,16 +19,17 @@ const PlanDetailsScreen = () => {
   const plan = trips
     .find((v) => v.id === tripId)
     ?.plans.find((v) => v.id === id);
-  const planType = planTypes[plan?.plan_type ?? "activity"];
 
   const [visible, setVisible] = useState(false);
+
+  const formatedPlanDetails = formatPlanForPlanDetails(plan!);
 
   return (
     <SafeAreaView className="h-full bg-white">
       <Provider>
         <View className="flex h-full w-full items-center">
           <AppBar
-            title={planType.name}
+            title=""
             childLeft={
               <TouchableOpacity onPress={() => router.back()}>
                 <Feather name="chevron-left" size={28} color="black" />
@@ -62,9 +64,13 @@ const PlanDetailsScreen = () => {
           />
           <ScrollView className="mb-2 w-full">
             <View className="mx-auto my-2 w-11/12">
-              <Text className="font-InterBold text-lg">{plan?.name}</Text>
-              <View className="flex-row items-center justify-between">
-                <Text className="font-InterMedium">{planType.name}</Text>
+              <Text className="font-InterBold text-lg">
+                {formatedPlanDetails?.title}
+              </Text>
+              <View className="mt-1 flex-row items-end justify-between">
+                <Text className="font-InterMedium leading-[21px]">
+                  {formatedPlanDetails?.description}
+                </Text>
                 <Text className="font-InterMedium">
                   Expense:{" "}
                   <Text className="font-InterBold">{plan?.expense} $</Text>
@@ -72,30 +78,78 @@ const PlanDetailsScreen = () => {
               </View>
             </View>
 
-            <View className="my-2 bg-neutral-300 py-1">
-              <Text className="mx-auto w-11/12 font-InterSemiBold">
-                {/* {getRangeDate(plan.start_date, plan.end_date)} */}
-                Mon 30 Sep - Tue 1 Oct, 2024
-              </Text>
+            <View className="my-2">
+              <View className="bg-neutral-300 py-1">
+                <Text className="mx-auto w-11/12 font-InterSemiBold">
+                  {formatedPlanDetails?.rangeDateTime}
+                </Text>
+              </View>
+
+              <View className="mx-auto w-11/12">
+                <PlanTypeDetail
+                  planType={plan?.plan_type!}
+                  {...formatedPlanDetails.detail}
+                />
+              </View>
             </View>
 
-            <View className="my-2 bg-neutral-300 py-1">
-              <Text className="mx-auto w-11/12 font-InterSemiBold">
-                {/* {getRangeDate(plan.start_date, plan.end_date)} */} Others
-                Informations
-              </Text>
+            {formatedPlanDetails?.contact !== null && (
+              <View className="my-2">
+                <View className="bg-neutral-300 pb-1 pt-4">
+                  <Text className="mx-auto w-11/12 font-InterSemiBold">
+                    Other Contacts
+                  </Text>
+                </View>
+
+                <View className="mx-auto mt-1 w-11/12">
+                  {["Address", "Phone", "Email"].map((item, index) => (
+                    <View key={"contact" + index} className="mt-1">
+                      <Text className="font-InterBold">
+                        {item}:{" "}
+                        <Text className="font-InterMedium">
+                          {formatedPlanDetails?.contact[index]}
+                        </Text>
+                      </Text>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            )}
+
+            <View className="my-2">
+              <View className="bg-neutral-300 pb-1 pt-4">
+                <Text className="mx-auto w-11/12 font-InterSemiBold">
+                  Collections
+                </Text>
+              </View>
+
+              <View className="mx-auto w-11/12">
+                {/* 
+              
+              */}
+              </View>
             </View>
 
-            <View className="my-2 bg-neutral-300 py-1">
-              <Text className="mx-auto w-11/12 font-InterSemiBold">
-                Collections
-              </Text>
-            </View>
+            <View className="my-2">
+              <View className="bg-neutral-300 pb-1 pt-4">
+                <Text className="mx-auto w-11/12 font-InterSemiBold">
+                  Documents
+                </Text>
+              </View>
 
-            <View className="my-2 bg-neutral-300 py-1">
-              <Text className="mx-auto w-11/12 font-InterSemiBold">
-                Documents
-              </Text>
+              <View className="mx-auto mt-4 w-11/12 flex-row items-center">
+                <TouchableOpacity
+                  className="h-20 w-20 items-center justify-center rounded-xl bg-gray-300"
+                  onPress={() => {
+                    //
+                  }}
+                >
+                  <MaterialCommunityIcons name="plus" size={24} color="black" />
+                </TouchableOpacity>
+                <Text className="ml-4 font-InterMedium">
+                  Attach a photo or pdf
+                </Text>
+              </View>
             </View>
           </ScrollView>
         </View>
