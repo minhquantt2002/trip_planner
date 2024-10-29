@@ -59,24 +59,3 @@ const CollectionScreen = () => {
 };
 
 export default CollectionScreen;
-
-const collections = [
-  {
-    id: 1,
-    name: "Waterfalls",
-    image:
-      "https://kyluc.vn/userfiles/upload/images/modules/news/2016/7/11/0_hinh-anh-thien-nhien-dep-nhat-th-gioi.jpg",
-  },
-  {
-    id: 2,
-    name: "Beaches",
-    image:
-      "https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/hinh-nen-thien-nhien-3d-001.jpg",
-  },
-  {
-    id: 3,
-    name: "Restaurants",
-    image:
-      "https://posapp.vn/wp-content/uploads/2020/09/%C4%91%E1%BB%93ng-b%E1%BB%99-n%E1%BB%99i-th%E1%BA%A5t.jpg",
-  },
-];

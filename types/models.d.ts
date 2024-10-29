@@ -101,10 +101,9 @@ declare type PlanType =
   | "shopping"
   | "activity";
 
-
-declare interface collectImages {
+declare interface CollectImages {
   id: string;
-  trip_id:string;
+  trip_id: string;
   plan_id: string;
   imageUrls: string[];
 }

@@ -1,13 +1,13 @@
 import AppBar from "@/components/AppBar";
-
-import { AntDesign, Feather } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { Image, ScrollView, TouchableOpacity, View } from "react-native";
+import { ScrollView, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { collectionImages } from "@/constants/collectionDetails";
 import CollectionItem from "@/components/Collection/CollectionItems";
+
 const CollectionDetailScreen = () => {
   const { id, collectionData } = useLocalSearchParams();
   const [collectionDetail, setCollectionDetail] = useState<Trip>();
@@ -47,7 +47,9 @@ const CollectionDetailScreen = () => {
                     });
                   }}
                 >
-                  <Text className="text-blue-500">View trip</Text>
+                  <Text className="mr-2.5 text-right font-InterMedium text-blue-500">
+                    View trip
+                  </Text>
                 </TouchableOpacity>
               }
             />

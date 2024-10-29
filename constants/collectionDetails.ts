@@ -1,4 +1,4 @@
-export const collectionImages: collectImages[] = [
+export const collectionImages: CollectImages[] = [
   {
     id: "1",
     trip_id: "1",

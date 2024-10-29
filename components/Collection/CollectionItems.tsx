@@ -6,16 +6,38 @@ import { Text } from "react-native-paper";
 
 type CollectionItemProps = PropsWithChildren<{
   item: Plan;
-  collectionImages: collectImages[];
+  collectionImages: CollectImages[];
 }>;
+
 const CollectionItem = ({ item, collectionImages }: CollectionItemProps) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
-    <View className="" key={item.id}>
+    <View key={item.id}>
       <View className="mb-4">
-        <Text className="mb-2 font-InterMedium text-lg">{item.name}</Text>
-        <View className="flex-row flex-wrap items-center space-x-2">
+        <View className="flex-row items-end justify-between">
+          <Text className="mb-2 font-InterMedium text-lg">{item.name}</Text>
+
+          <TouchableOpacity
+            onPress={() =>
+              router.push({
+                pathname: "/(tabs)/(trip)/(plan)/plan-details/[id]",
+                params: {
+                  id: item.id,
+                  tripIndex: 1,
+                },
+              })
+            }
+            className="mt-2 self-start"
+          >
+            <Text className="font-InterRegular text-sm text-gray-500">
+              View plan
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View className="flex-row flex-wrap items-center">
           {collectionImages
             .filter((v) => v.plan_id === item.id)
             .flatMap((v) => v.imageUrls)
@@ -26,6 +48,10 @@ const CollectionItem = ({ item, collectionImages }: CollectionItemProps) => {
                   setSelectedImage(url);
                   setModalVisible(true);
                 }}
+                className="mb-2 w-[20%] items-center"
+                onLongPress={() => {
+                  console.log("......");
+                }}
               >
                 <Image
                   source={{ uri: url }}
@@ -34,8 +60,9 @@ const CollectionItem = ({ item, collectionImages }: CollectionItemProps) => {
                 />
               </TouchableOpacity>
             ))}
+
           <TouchableOpacity
-            className="h-16 w-16 items-center justify-center rounded bg-gray-200"
+            className="ml-1.5 h-16 w-16 items-center justify-center rounded bg-gray-200"
             onPress={() => {
               /* image logic */
             }}
@@ -44,19 +71,7 @@ const CollectionItem = ({ item, collectionImages }: CollectionItemProps) => {
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity
-        onPress={() =>
-          router.push({
-            pathname: "/(tabs)/(trip)/(plan)/plan-details/[id]",
-            params: {
-              id: item.id,
-            },
-          })
-        }
-        className="mt-2 self-start"
-      >
-        <Text className="text-gray-500">View Plan</Text>
-      </TouchableOpacity>
+
       <Modal
         animationType="slide"
         transparent={false}
