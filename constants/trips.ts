@@ -134,7 +134,7 @@ export const trips: Trip[] = [
         pickup_address: "Tokyo Narita Airport",
         pickup_phone: "0123456789",
         drop_off_at: "2025-01-15T18:00",
-        drop_off_addrress: "Tokyo Narita Airport",
+        drop_off_address: "Tokyo Narita Airport",
         drop_off_phone: "0123456789",
         expense: 300,
         document: "https://example.com/car_rental_receipt.pdf",

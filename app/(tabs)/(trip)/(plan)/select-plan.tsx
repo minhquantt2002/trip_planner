@@ -2,13 +2,7 @@ import AppBar from "@/components/AppBar";
 import { planTypes } from "@/constants/plans";
 import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
-import {
-  Platform,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const SelectPlanScreen = () => {
@@ -30,7 +24,7 @@ const SelectPlanScreen = () => {
                 key={index}
                 className={`w-full items-center border-b-[1px] border-inactiveColor ${index === 0 ? "border-t-[1px]" : ""}`}
                 onPress={() => {
-                  router.push({
+                  router.replace({
                     pathname: "/(tabs)/(trip)/(plan)/create-plan",
                     params: {
                       planType: key,

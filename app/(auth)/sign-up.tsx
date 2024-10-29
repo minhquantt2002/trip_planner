@@ -58,9 +58,9 @@ const SignUpScreen = () => {
             </Text>
 
             <View className="mb-2 mt-6 w-[92%] rounded-2xl py-4">
-              <TextField label="First Name" />
-              <TextField label="Last Name" />
-              <TextField label="Email" />
+              <TextField label="First Name" wrapperStyle="mb-1" />
+              <TextField label="Last Name" wrapperStyle="mb-1" />
+              <TextField label="Email" wrapperStyle="mb-1" />
               <TextField label="Password" secureTextEntry={true} />
               <Button
                 title="Sign up"

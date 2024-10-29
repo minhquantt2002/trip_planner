@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TextField from "@/components/Form/Field/TextField";
 import Button from "@/components/Button";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -50,8 +50,12 @@ const SignInScreen = () => {
         </Text>
 
         <View className="mb-2 mt-6 w-[92%] rounded-2xl py-4">
-          <TextField label="Email" />
-          <TextField label="Password" secureTextEntry={true} />
+          <TextField label="Email" wrapperStyle="mb-1" />
+          <TextField
+            label="Password"
+            secureTextEntry={true}
+            wrapperStyle="mb-1"
+          />
           <Button title="Sign in" className="mt-6" onPress={onSignIn} />
         </View>
         <View className="flex flex-row items-center justify-center">
