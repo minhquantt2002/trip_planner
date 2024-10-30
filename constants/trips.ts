@@ -19,6 +19,15 @@ export const trips: Trip[] = [
         phone: "0123456789",
         email: "contact@luxuryhotel.com",
         document: "https://example.com/luxury_hotel_invoice.pdf",
+        imageUrls: [
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://cf.bstatic.com/xdata/images/hotel/max1024x768/458496176.jpg?k=10dd4945d30c22fbd973c83248d9dafc26bc63d244c55ae4fded76cb577f1dd2&o=&hp=1",
+        ],
       },
       {
         id: "2",
@@ -37,6 +46,9 @@ export const trips: Trip[] = [
         arrival_gate: "14",
         expense: 1000,
         document: "https://example.com/flight_ticket.pdf",
+        imageUrls: [
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+        ],
       },
       {
         id: "3",
@@ -48,6 +60,10 @@ export const trips: Trip[] = [
         phone: "0987654321",
         email: "info@legourmet.fr",
         document: "https://example.com/dinner_invoice.pdf",
+        imageUrls: [
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://cf.bstatic.com/xdata/images/hotel/max1024x768/458496176.jpg?k=10dd4945d30c22fbd973c83248d9dafc26bc63d244c55ae4fded76cb577f1dd2&o=&hp=1",
+        ],
       },
     ],
   },
@@ -71,6 +87,10 @@ export const trips: Trip[] = [
         phone: "0987654321",
         email: "contact@mountainresort.com",
         document: "https://example.com/resort_invoice.pdf",
+        imageUrls: [
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://cf.bstatic.com/xdata/images/hotel/max1024x768/458496176.jpg?k=10dd4945d30c22fbd973c83248d9dafc26bc63d244c55ae4fded76cb577f1dd2&o=&hp=1",
+        ],
       },
       {
         id: "5",
@@ -83,6 +103,10 @@ export const trips: Trip[] = [
         phone: "0123456789",
         email: "info@elephanttour.com",
         document: "https://example.com/tour_ticket.pdf",
+        imageUrls: [
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://cf.bstatic.com/xdata/images/hotel/max1024x768/458496176.jpg?k=10dd4945d30c22fbd973c83248d9dafc26bc63d244c55ae4fded76cb577f1dd2&o=&hp=1",
+        ],
       },
       {
         id: "6",
@@ -96,6 +120,10 @@ export const trips: Trip[] = [
         arrival_address: "Chiang Mai River",
         expense: 200,
         document: "https://example.com/boat_ticket.pdf",
+        imageUrls: [
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://cf.bstatic.com/xdata/images/hotel/max1024x768/458496176.jpg?k=10dd4945d30c22fbd973c83248d9dafc26bc63d244c55ae4fded76cb577f1dd2&o=&hp=1",
+        ],
       },
     ],
   },
@@ -124,6 +152,10 @@ export const trips: Trip[] = [
         arrival_gate: "10",
         expense: 900,
         document: "https://example.com/flight_ticket.pdf",
+        imageUrls: [
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://cf.bstatic.com/xdata/images/hotel/max1024x768/458496176.jpg?k=10dd4945d30c22fbd973c83248d9dafc26bc63d244c55ae4fded76cb577f1dd2&o=&hp=1",
+        ],
       },
       {
         id: "8",
@@ -138,6 +170,10 @@ export const trips: Trip[] = [
         drop_off_phone: "0123456789",
         expense: 300,
         document: "https://example.com/car_rental_receipt.pdf",
+        imageUrls: [
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://cf.bstatic.com/xdata/images/hotel/max1024x768/458496176.jpg?k=10dd4945d30c22fbd973c83248d9dafc26bc63d244c55ae4fded76cb577f1dd2&o=&hp=1",
+        ],
       },
       {
         id: "9",
@@ -150,6 +186,76 @@ export const trips: Trip[] = [
         phone: "0987654321",
         email: "sales@akihabara.com",
         document: "https://example.com/shopping_invoice.pdf",
+        imageUrls: [
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://cf.bstatic.com/xdata/images/hotel/max1024x768/458496176.jpg?k=10dd4945d30c22fbd973c83248d9dafc26bc63d244c55ae4fded76cb577f1dd2&o=&hp=1",
+        ],
+      },
+    ],
+  },
+  {
+    id: "4",
+    name: "Trip 3",
+    image_url:
+      "https://i0.wp.com/picjumbo.com/wp-content/uploads/wooden-pier-free-image.jpeg?w=600&quality=80",
+    start_date: "2025-01-10",
+    end_date: "2025-01-20",
+    plans: [
+      {
+        name: "",
+        id: "7",
+        plan_type: "flight",
+        airline: "Vietjet",
+        departure_at: "2025-01-10T07:00",
+        departure_address: "Los Angeles - LAX",
+        departure_terminal: "B",
+        departure_gate: "20",
+        seat: "15C",
+        coach: "Economy",
+        arrival_at: "2025-01-10T11:00",
+        arrival_address: "Tokyo - Narita Airport",
+        arrival_terminal: "1",
+        arrival_gate: "10",
+        expense: 900,
+        document: "https://example.com/flight_ticket.pdf",
+        imageUrls: [
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://cf.bstatic.com/xdata/images/hotel/max1024x768/458496176.jpg?k=10dd4945d30c22fbd973c83248d9dafc26bc63d244c55ae4fded76cb577f1dd2&o=&hp=1",
+        ],
+      },
+      {
+        id: "8",
+        plan_type: "carRental",
+        name: "",
+        rental_agency: "Tokyo Car Rentals",
+        pickup_at: "2025-01-11T09:00",
+        pickup_address: "Tokyo Narita Airport",
+        pickup_phone: "0123456789",
+        drop_off_at: "2025-01-15T18:00",
+        drop_off_address: "Tokyo Narita Airport",
+        drop_off_phone: "0123456789",
+        expense: 300,
+        document: "https://example.com/car_rental_receipt.pdf",
+        imageUrls: [
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://cf.bstatic.com/xdata/images/hotel/max1024x768/458496176.jpg?k=10dd4945d30c22fbd973c83248d9dafc26bc63d244c55ae4fded76cb577f1dd2&o=&hp=1",
+        ],
+      },
+      {
+        id: "9",
+        plan_type: "shopping",
+        name: "Akihabara Electronics",
+        start_at: "2025-01-13T12:00",
+        end_at: "2025-01-13T16:00",
+        expense: 400,
+        address: "Akihabara, Tokyo",
+        phone: "0987654321",
+        email: "sales@akihabara.com",
+        document: "https://example.com/shopping_invoice.pdf",
+        imageUrls: [
+          "https://i0.wp.com/elegance-suisse.ch/wp-content/uploads/About-the-best-luxury-hotels-palaces.jpg?resize=1000%2C1328&ssl=1",
+          "https://cf.bstatic.com/xdata/images/hotel/max1024x768/458496176.jpg?k=10dd4945d30c22fbd973c83248d9dafc26bc63d244c55ae4fded76cb577f1dd2&o=&hp=1",
+        ],
       },
     ],
   },

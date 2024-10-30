@@ -15,11 +15,12 @@ const TripScreen = () => {
     <SafeAreaView className="h-full bg-white">
       <View className="flex h-full w-full items-center">
         <TripTypeTab tab={tab} setTab={setTab} />
+
         <ScrollView className="mt-2 w-full">
           <View className="m-auto w-11/12">
             <TextField
               wrapperStyle="w-full"
-              IconLeft={<MaterialIcons name="search" size={24} color="black" />}
+              IconLeft={<MaterialIcons name="search" size={24} color="gray" />}
               placeholder="Trip name"
               value={search}
               onChangeText={(value) => setSearch(value)}

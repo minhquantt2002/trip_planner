@@ -1,31 +1,36 @@
 import { AntDesign } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { PropsWithChildren, useState } from "react";
+import { useState } from "react";
 import { Image, Modal, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 
-type CollectionItemProps = PropsWithChildren<{
-  item: Plan;
-  collectionImages: CollectImages[];
-}>;
+interface CollectionItemProps {
+  planId: string;
+  planName: string;
+  imageUrls: string[];
+}
 
-const CollectionItem = ({ item, collectionImages }: CollectionItemProps) => {
+const CollectionItem = ({
+  planId,
+  planName,
+  imageUrls,
+}: CollectionItemProps) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <View key={item.id}>
+    <View>
       <View className="mb-4">
         <View className="flex-row items-end justify-between">
-          <Text className="mb-2 font-InterMedium text-lg">{item.name}</Text>
+          <Text className="mb-2 font-InterMedium text-lg">{planName}</Text>
 
           <TouchableOpacity
             onPress={() =>
               router.push({
                 pathname: "/(tabs)/(trip)/(plan)/plan-details/[id]",
                 params: {
-                  id: item.id,
-                  tripIndex: 1,
+                  id: planId,
+                  tripId: 1,
                 },
               })
             }
@@ -38,28 +43,25 @@ const CollectionItem = ({ item, collectionImages }: CollectionItemProps) => {
         </View>
 
         <View className="flex-row flex-wrap items-center">
-          {collectionImages
-            .filter((v) => v.plan_id === item.id)
-            .flatMap((v) => v.imageUrls)
-            .map((url, idx) => (
-              <TouchableOpacity
-                key={`${item.id}-${idx}`}
-                onPress={() => {
-                  setSelectedImage(url);
-                  setModalVisible(true);
-                }}
-                className="mb-2 w-[20%] items-center"
-                onLongPress={() => {
-                  console.log("......");
-                }}
-              >
-                <Image
-                  source={{ uri: url }}
-                  className="h-16 w-16 rounded"
-                  style={{ resizeMode: "cover" }}
-                />
-              </TouchableOpacity>
-            ))}
+          {imageUrls.map((url, idx) => (
+            <TouchableOpacity
+              key={`${planId}-${idx}`}
+              onPress={() => {
+                setSelectedImage(url);
+                setModalVisible(true);
+              }}
+              className="mb-2 w-[20%] items-center"
+              onLongPress={() => {
+                console.log("......");
+              }}
+            >
+              <Image
+                source={{ uri: url }}
+                className="h-16 w-16 rounded"
+                style={{ resizeMode: "cover" }}
+              />
+            </TouchableOpacity>
+          ))}
 
           <TouchableOpacity
             className="ml-1.5 h-16 w-16 items-center justify-center rounded bg-gray-200"

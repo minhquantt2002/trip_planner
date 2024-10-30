@@ -1,8 +1,9 @@
 import AppBar from "@/components/AppBar";
 import { Feather } from "@expo/vector-icons";
+import { router } from "expo-router";
 import { ScrollView, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-//TODO
+
 const CreateContactScreen = () => {
   return (
     <SafeAreaView className="h-full bg-white">
@@ -21,4 +22,5 @@ const CreateContactScreen = () => {
     </SafeAreaView>
   );
 };
+
 export default CreateContactScreen;

@@ -1,12 +1,13 @@
 import React, { useRef, useState } from "react";
-import { Text, TextInput, View, Alert, ScrollView } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Text, TextInput, View, Alert } from "react-native";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 const PinCodeScreen = () => {
   const [pin, setPin] = useState<string[]>(["", "", "", "", "", ""]);
   const inputRefs = useRef<(TextInput | null)[]>([]);
   const correctPin = "123456";
+
   const handleChange = (text: string, index: number) => {
     //check value -> move to next position
     const newPin = [...pin];
@@ -24,6 +25,7 @@ const PinCodeScreen = () => {
       handlePinSubmit(newPin.join(""));
     }
   };
+
   //Backspace
   const handleKeyPress = (e: any, index: number) => {
     if (e.nativeEvent.key === "Backspace" && pin[index] === "") {
@@ -35,6 +37,7 @@ const PinCodeScreen = () => {
       }
     }
   };
+
   const handlePinSubmit = (enteredPin: string) => {
     if (enteredPin === correctPin) {
       router.replace("/(tabs)/(profile)/(document)/document");
@@ -44,10 +47,11 @@ const PinCodeScreen = () => {
       inputRefs.current[0]?.focus();
     }
   };
+
   return (
     <SafeAreaView className="flex-1 justify-center bg-white">
-      <View className="items-center">
-        <Text className="mb-5 text-xl font-semibold text-gray-700">
+      <View className="mb-8 items-center">
+        <Text className="mb-4 text-xl font-semibold text-gray-700">
           Please enter your pin code
         </Text>
         <View className="flex-row space-x-3">

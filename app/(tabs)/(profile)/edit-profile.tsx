@@ -1,21 +1,14 @@
 import Button from "@/components/Button";
 import TextField from "@/components/Form/Field/TextField";
-import { AntDesign, FontAwesome } from "@expo/vector-icons";
+import { AntDesign, Feather, FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
+import AppBar from "@/components/AppBar";
+
 const EditProfileScreen = () => {
-  const onSave = () => {
-    alert("save successfull!");
-  };
-
-  const onCancel = () => {
-    //TODO confirm un save change .
-    router.back();
-  };
-
   const [isModalVisible, setModalVisible] = useState(false);
   const [imageUri, setImageUri] = useState<string | null>(null);
   const [statusCamera, requestPermissionCamera] =
@@ -27,6 +20,7 @@ const EditProfileScreen = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+
   const choosePhoto = async () => {
     toggleModal();
     console.log("statusLibrary: ", statusLibrary);
@@ -62,75 +56,81 @@ const EditProfileScreen = () => {
       setImageUri(result.assets[0].uri);
     }
   };
+
+  const onSave = () => {
+    alert("save successfull!");
+  };
+
+  const onCancel = () => {
+    router.back();
+  };
+
   return (
     <SafeAreaView className="h-full bg-white">
-      <ScrollView className="w-full">
-        <View className="flex h-full w-full items-center">
-          <View className="flex-row items-center px-4">
+      <AppBar
+        title="Edit profile"
+        childLeft={
+          <TouchableOpacity onPress={() => router.back()}>
+            <Feather name="chevron-left" size={28} color="black" />
+          </TouchableOpacity>
+        }
+      />
+
+      <ScrollView className="mx-auto mt-2 w-11/12 p-2">
+        <View className="mt-6 items-center">
+          <View className="relative">
+            <View className="h-36 w-36 items-center justify-center rounded-full bg-gray-200">
+              <FontAwesome name="user" size={60} color="gray" />
+            </View>
             <TouchableOpacity
-              onPress={() => {
-                router.back();
-              }}
+              className="absolute bottom-0 right-0 h-12 w-12 items-center justify-center rounded-full bg-primaryColor"
+              onPress={toggleModal}
             >
-              <AntDesign name="arrowleft" size={24} color="black" />
+              <AntDesign name="camera" size={24} color="white" />
             </TouchableOpacity>
-            <Text className="flex-1 text-center font-InterBold text-xl">
-              Edit Profile
-            </Text>
-            <View className="w-4"></View>
           </View>
 
-          <View className="mt-6 items-center">
-            <View className="relative">
-              <View className="h-36 w-36 items-center justify-center rounded-full bg-gray-300">
-                <FontAwesome name="user" size={60} color="gray" />
-              </View>
+          <Modal
+            transparent={true}
+            visible={isModalVisible}
+            onRequestClose={toggleModal}
+            animationType="fade"
+          >
+            <TouchableOpacity style={{ flex: 1 }} onPress={toggleModal} />
+            <View className="absolute right-[16] top-[150] w-6/12 rounded-lg border-[1px] border-gray-200 bg-white">
               <TouchableOpacity
-                className="absolute bottom-0 right-0 h-10 w-10 items-center justify-center rounded-full bg-primaryColor"
-                onPress={toggleModal}
+                onPress={choosePhoto}
+                className="border-b-[1px] border-t-[1px] border-gray-300 p-2 pl-6"
               >
-                <AntDesign name="camera" size={22} color="white" />
+                <Text className="font-InterMedium">Choose Photo</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={takePhoto} className="p-2 pl-6">
+                <Text className="font-InterMedium">Take Photo</Text>
               </TouchableOpacity>
             </View>
-            <Modal
-              transparent={true}
-              visible={isModalVisible}
-              onRequestClose={toggleModal}
-              animationType="fade"
-            >
-              <TouchableOpacity style={{ flex: 1 }} onPress={toggleModal} />
-              <View className="absolute right-[16] top-[150] w-6/12 rounded-lg border-[1px] border-gray-200 bg-white">
-                <TouchableOpacity
-                  onPress={choosePhoto}
-                  className="border-b-[1px] border-t-[1px] border-gray-300 p-2 pl-6"
-                >
-                  <Text className="font-InterMedium">Choose Photo</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={takePhoto} className="p-2 pl-6">
-                  <Text className="font-InterMedium">Take Photo</Text>
-                </TouchableOpacity>
-              </View>
-            </Modal>
-          </View>
+          </Modal>
+        </View>
 
-          <View className="mt-2 w-11/12">
-            <TextField className="" label="Username" />
-            <TextField className="" label="Email" />
-            <TextField className="" label="Phone Number" />
-            <TextField className="" label="Gender" />
-          </View>
-          <View className="mt-4 w-11/12">
-            <Button title="Save" onPress={onSave} />
-            <Button
-              title="Cancel"
-              onPress={onCancel}
-              className="mt-4 border border-primaryColor bg-white"
-              textStyle="text-primaryColor"
-            />
-          </View>
+        <View className="mt-2">
+          <TextField label="Username" wrapperStyle="mb-4" />
+          <TextField label="Email" wrapperStyle="mb-4" />
+          <TextField label="Phone Number" wrapperStyle="mb-4" />
+          <TextField label="Gender" wrapperStyle="mb-4" />
+          <TextField label="Address" wrapperStyle="mb-4" />
+        </View>
+
+        <View className="mt-4">
+          <Button title="Save" onPress={onSave} />
+          <Button
+            title="Cancel"
+            onPress={onCancel}
+            className="my-4 border border-primaryColor bg-white"
+            textStyle="text-primaryColor"
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
+
 export default EditProfileScreen;

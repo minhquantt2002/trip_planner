@@ -1,3 +1,4 @@
+import AppBar from "@/components/AppBar";
 import Button from "@/components/Button";
 import { AntDesign, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -7,23 +8,25 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const ProfileScreen = () => {
   const user = {
     name: "Name",
-    address: "HN-VN",
+    address: "Ha Noi, Viet Nam",
     image: null,
   };
 
-  const signOut = () => {};
+  const signOut = () => {
+    //
+  };
 
   return (
     <SafeAreaView className="h-full bg-white">
-      <ScrollView className="w-full">
-        <View className="flex h-full w-full items-center">
-          <Text className="text-center font-InterBold text-xl">Profile</Text>
+      <AppBar title="Profile" />
 
+      <ScrollView>
+        <View className="mx-auto flex w-11/12 items-center">
           <TouchableOpacity
-            className="mx-4 mt-4 w-11/12 flex-row items-center rounded-lg bg-primaryColor p-4"
+            className="mt-2 w-full flex-row items-center rounded-lg border border-neutral-200 bg-neutral-100 p-4"
             onPress={() => router.push("/(tabs)/(profile)/edit-profile")}
           >
-            <View className="h-16 w-16 items-center justify-center rounded-full bg-gray-300">
+            <View className="h-16 w-16 items-center justify-center rounded-full bg-gray-200">
               {user.image ? (
                 <Image source={{ uri: user.image }} />
               ) : (
@@ -31,24 +34,24 @@ const ProfileScreen = () => {
               )}
             </View>
             <View className="ml-4">
-              <Text className="Inter-SemiBold text-lg">{user.name}</Text>
+              <Text className="font-InterBold text-lg">{user.name}</Text>
               <View className="flex-row items-center">
-                <MaterialIcons name="location-pin" size={16} color="gray" />
-                <Text className="ml-1 font-InterRegular">{user.address}</Text>
+                <MaterialIcons name="location-pin" size={22} color="gray" />
+                <Text className="ml-1 font-InterMedium">{user.address}</Text>
               </View>
             </View>
           </TouchableOpacity>
 
-          <View className="mt-10 w-11/12">
+          <View className="mt-6 w-full">
             <TouchableOpacity
-              className="flex-row items-center justify-between border-y border-gray-200 p-4"
+              className="flex-row items-center justify-between border-t border-neutral-200 p-4"
               onPress={() => {
                 router.push("/(tabs)/(profile)/(document)/verify");
               }}
             >
               <View className="flex-row items-center">
                 <MaterialIcons name="folder-open" size={24} color="black" />
-                <Text className="ml-4 font-InterRegular text-lg">
+                <Text className="ml-4 font-InterRegular text-base">
                   Documents
                 </Text>
               </View>
@@ -60,14 +63,14 @@ const ProfileScreen = () => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              className="flex-row items-center justify-between border-y border-gray-200 p-4"
+              className="flex-row items-center justify-between border-y border-neutral-200 p-4"
               onPress={() => {
                 router.push("/(tabs)/(profile)/(contact)");
               }}
             >
               <View className="flex-row items-center">
                 <AntDesign name="contacts" size={24} color="black" />
-                <Text className="ml-4 font-InterRegular text-lg">
+                <Text className="ml-4 font-InterRegular text-base">
                   Travel Contacts
                 </Text>
               </View>
@@ -79,14 +82,14 @@ const ProfileScreen = () => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              className="flex-row items-center justify-between border-y border-gray-200 p-4"
+              className="flex-row items-center justify-between border-b border-neutral-200 p-4"
               onPress={() => {
                 router.push("/(tabs)/(profile)/change-password");
               }}
             >
               <View className="flex-row items-center">
                 <AntDesign name="key" size={24} color="black" />
-                <Text className="ml-4 font-InterRegular text-lg">
+                <Text className="ml-4 font-InterRegular text-base">
                   Change Password
                 </Text>
               </View>
@@ -97,11 +100,11 @@ const ProfileScreen = () => {
                 color="gray"
               />
             </TouchableOpacity>
+
             <Button
               title="Sign out"
               onPress={signOut}
-              className="mt-12 border border-primaryColor bg-white"
-              textStyle="text-primaryColor"
+              className="mt-10 bg-primaryColor"
             />
           </View>
         </View>

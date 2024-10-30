@@ -75,7 +75,7 @@ declare type Plan = Activity &
   Flight &
   CarRental &
   BoatTrain &
-  Lodging & { id: string };
+  Lodging & { id: string; imageUrls: string[] };
 
 declare interface Trip {
   id: string;

@@ -6,17 +6,11 @@ const Layout = () => {
         name="verify"
         options={{ presentation: "modal", headerShown: false }}
       />
-      <Stack.Screen
-        name="add-document"
-        options={{ presentation: "modal", headerShown: false }}
-      />
-      <Stack.Screen
-        name="document"
-        options={{ presentation: "modal", headerShown: false }}
-      />
+      <Stack.Screen name="add-document" options={{ headerShown: false }} />
+      <Stack.Screen name="document" options={{ headerShown: false }} />
       <Stack.Screen
         name="document-edit/[id]"
-        options={{ presentation: "modal", headerShown: false }}
+        options={{ headerShown: false }}
       />
     </Stack>
   );

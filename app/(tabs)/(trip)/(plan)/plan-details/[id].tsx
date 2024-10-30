@@ -1,4 +1,5 @@
 import AppBar from "@/components/AppBar";
+import CollectionItem from "@/components/Collection/CollectionItem";
 import PlanTypeDetail from "@/components/Plan/PlanTypeDetail";
 import { planTypes } from "@/constants/plans";
 import { trips } from "@/constants/trips";
@@ -124,9 +125,11 @@ const PlanDetailsScreen = () => {
               </View>
 
               <View className="mx-auto w-11/12">
-                {/* 
-              
-              */}
+                <CollectionItem
+                  planName={planTypes[plan?.plan_type!].name}
+                  planId={plan?.id!}
+                  imageUrls={plan?.imageUrls!}
+                />
               </View>
             </View>
 

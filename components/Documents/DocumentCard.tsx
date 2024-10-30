@@ -1,10 +1,11 @@
 import { Entypo, FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Image, Linking, Text, TouchableOpacity, View } from "react-native";
-import { Menu, Provider } from "react-native-paper";
+import { Menu } from "react-native-paper";
 import { useState } from "react";
+
 interface DocumentData {
-  mainPhoto: string;
+  imageUrl: string;
   title: string;
   url: string;
 }
@@ -12,31 +13,27 @@ interface DocumentData {
 const DocumentCard = (props: DocumentData) => {
   const [visible, setVisible] = useState(false);
 
-  // Xử lý khi nhấn vào icon 3 chấm
   const openMenu = () => {
-    console.log("Opening menu");
     setVisible(true);
   };
+
   const closeMenu = () => {
-    console.log("Closing menu");
     setVisible(false);
   };
 
-  // Xử lý khi nhấn vào tài liệu
   const handlePress = (uri: string) => {
     Linking.openURL(uri).catch((err) =>
       console.error("Failed to open file:", err),
     );
   };
 
-  // Xử lý khi nhấn vào sửa/xóa
   const handleEdit = () => {
     router.push({
       pathname: "/(document)/document-edit/[id]",
       params: {
         id: 1,
         documentData: JSON.stringify({
-          mainPhoto: props.mainPhoto,
+          imageUrl: props.imageUrl,
           title: props.title,
           url: props.url,
         }),
@@ -51,20 +48,29 @@ const DocumentCard = (props: DocumentData) => {
   };
 
   return (
-    <View className="my-2 w-6/12 px-2">
+    <View className="m-2 w-5/12 rounded-lg border border-neutral-300 px-2">
       <View className="items-end">
         <Menu
           visible={visible}
           onDismiss={closeMenu}
           anchor={
-            <TouchableOpacity onPress={openMenu} className="p-4">
-              <Entypo name="dots-three-horizontal" size={20} color="black" />
+            <TouchableOpacity onPress={openMenu}>
+              <Entypo name="dots-three-horizontal" size={24} color="black" />
             </TouchableOpacity>
           }
           anchorPosition="bottom"
+          mode="elevated"
         >
-          <Menu.Item onPress={handleEdit} title="Edit document" />
-          <Menu.Item onPress={handleDelete} title="Delete document" />
+          <Menu.Item
+            titleStyle={{ fontFamily: "Inter-Medium" }}
+            onPress={handleEdit}
+            title="Edit document"
+          />
+          <Menu.Item
+            titleStyle={{ fontFamily: "Inter-Medium" }}
+            onPress={handleDelete}
+            title="Delete document"
+          />
         </Menu>
       </View>
 
@@ -72,9 +78,9 @@ const DocumentCard = (props: DocumentData) => {
         onPress={() => handlePress(props.url)}
         className="items-center"
       >
-        {props.mainPhoto ? (
+        {props.imageUrl ? (
           <Image
-            source={{ uri: props.mainPhoto }}
+            source={{ uri: props.imageUrl }}
             className="h-24 w-24 rounded"
           />
         ) : (

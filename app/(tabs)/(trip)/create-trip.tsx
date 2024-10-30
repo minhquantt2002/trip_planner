@@ -18,7 +18,7 @@ const CreateTripModal = () => {
 
   return (
     <SafeAreaView className="h-full bg-white">
-      <View className="">
+      <View>
         <AppBar
           title="Create Your Trip"
           childLeft={
