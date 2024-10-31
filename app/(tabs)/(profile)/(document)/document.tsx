@@ -5,6 +5,7 @@ import { router } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Provider } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 const DocumentScreen = () => {
   return (
     <SafeAreaView className="h-full bg-white">

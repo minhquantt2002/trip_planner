@@ -2,7 +2,7 @@ import { countDays, getRangeDate } from "@/utils/datetime";
 import { router } from "expo-router";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
-interface TripProps {
+interface TripCardProps {
   id: number;
   name: string;
   image: string;
@@ -18,7 +18,7 @@ const TripCard = ({
   expense,
   startDate,
   endDate,
-}: TripProps) => {
+}: TripCardProps) => {
   return (
     <TouchableOpacity
       className="mb-4 h-36 w-full flex-row rounded-lg border-[1px] border-neutral-200 px-4 py-2"
@@ -34,7 +34,7 @@ const TripCard = ({
       <Image
         source={{ uri: image }}
         className="my-auto h-28 w-5/12"
-        resizeMode="contain"
+        resizeMode="cover"
       />
 
       <View className="ml-4 h-full flex-col items-start justify-center">

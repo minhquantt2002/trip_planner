@@ -4,9 +4,9 @@ import { router, useLocalSearchParams } from "expo-router";
 import { ScrollView, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
-import CollectionItem from "@/components/Collection/CollectionItem";
 import { trips } from "@/constants/trips";
 import { planTypes } from "@/constants/plans";
+import CategoryItem from "@/components/Collection/CategoryItem";
 
 const CollectionDetailScreen = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -43,7 +43,7 @@ const CollectionDetailScreen = () => {
       <ScrollView>
         <View className="mx-auto mt-4 w-11/12">
           {trip?.plans.map((plan, index) => (
-            <CollectionItem
+            <CategoryItem
               key={plan.id || index}
               planId={plan.id}
               planName={planTypes[plan.plan_type].name}

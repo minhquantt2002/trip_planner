@@ -1,6 +1,6 @@
 import { Image, Text, View } from "react-native";
 
-interface DataTrip {
+interface NotificationCardProps {
   trip: string;
   costs: string;
   time: string;
@@ -14,20 +14,20 @@ const NotificationCard = ({
   time,
   location,
   imageUrl,
-}: DataTrip) => {
+}: NotificationCardProps) => {
   return (
-    <View className="flex-row items-center border-b border-gray-300 px-4 py-4">
+    <View className="flex-row items-center border-b border-gray-300 p-4">
       <View className="flex-1">
-        <Text className="font-InterBold text-base">
+        <Text className="font-InterBold">
           Upcoming Trip: <Text className="font-InterRegular">{trip}</Text>
         </Text>
-        <Text className="font-InterBold text-base">
+        <Text className="font-InterBold">
           Expense: <Text className="font-InterRegular">{costs}</Text>
         </Text>
-        <Text className="font-InterBold text-base">
+        <Text className="font-InterBold">
           Time: <Text className="font-InterRegular">{time}</Text>
         </Text>
-        <Text className="font-InterBold text-base">
+        <Text className="font-InterBold">
           Location: <Text className="font-InterRegular">{location}</Text>
         </Text>
       </View>

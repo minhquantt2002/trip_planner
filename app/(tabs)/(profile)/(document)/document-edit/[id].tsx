@@ -79,7 +79,7 @@ const EditDocumentScreen = () => {
         </View>
         <View className="relative mx-auto w-11/12">
           {documentUrl ? (
-            <View className="items-center">
+            <View className="mt-4 items-center">
               {mainPhoto ? (
                 <Image
                   source={{ uri: mainPhoto }}
@@ -105,14 +105,14 @@ const EditDocumentScreen = () => {
                 setDocumentUrl("");
                 setMainPhoto("");
               }}
-              className="absolute -top-2 right-0 h-6 w-6 items-center justify-center rounded-full bg-red-600"
+              className="absolute right-0 top-0 h-6 w-6 items-center justify-center rounded-full bg-red-600"
             >
               <AntDesign name="close" size={12} color="white" />
             </TouchableOpacity>
           )}
         </View>
 
-        <View className="mx-auto mt-8 w-11/12">
+        <View className="mx-auto mt-10 w-11/12">
           <Button title="Save" onPress={onSave} className="bg-yellow-400" />
           <Button
             title="Cancel"

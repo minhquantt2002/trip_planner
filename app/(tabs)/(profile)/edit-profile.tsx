@@ -1,12 +1,18 @@
 import Button from "@/components/Button";
-import TextField from "@/components/Form/Field/TextField";
-import { AntDesign, Feather, FontAwesome } from "@expo/vector-icons";
+import {
+  AntDesign,
+  Feather,
+  FontAwesome,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { router } from "expo-router";
-import { useState } from "react";
-import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useMemo, useState } from "react";
+import { Modal, ScrollView, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
 import AppBar from "@/components/AppBar";
+import { Menu, Provider } from "react-native-paper";
+import Form, { FormField } from "@/components/Form";
 
 const EditProfileScreen = () => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -65,71 +71,136 @@ const EditProfileScreen = () => {
     router.back();
   };
 
-  return (
-    <SafeAreaView className="h-full bg-white">
-      <AppBar
-        title="Edit profile"
-        childLeft={
-          <TouchableOpacity onPress={() => router.back()}>
-            <Feather name="chevron-left" size={28} color="black" />
-          </TouchableOpacity>
-        }
-      />
+  const formFields = useMemo<FormField<CreateUser>[]>(() => {
+    return [
+      {
+        id: "username",
+        title: "Username",
+        type: "text",
+        xs: 12,
+      },
+      {
+        id: "full_name",
+        title: "Full name",
+        type: "text",
+        xs: 12,
+      },
+      {
+        id: "email",
+        title: "Email",
+        type: "text",
+        xs: 12,
+      },
+      {
+        id: "phone_number",
+        title: "Phone number",
+        type: "text",
+        xs: 12,
+      },
+      {
+        id: "address",
+        title: "Address",
+        type: "text",
+        xs: 12,
+      },
+    ];
+  }, []);
 
-      <ScrollView className="mx-auto mt-2 w-11/12 p-2">
-        <View className="mt-6 items-center">
-          <View className="relative">
-            <View className="h-36 w-36 items-center justify-center rounded-full bg-gray-200">
-              <FontAwesome name="user" size={60} color="gray" />
-            </View>
-            <TouchableOpacity
-              className="absolute bottom-0 right-0 h-12 w-12 items-center justify-center rounded-full bg-primaryColor"
-              onPress={toggleModal}
-            >
-              <AntDesign name="camera" size={24} color="white" />
+  const [initValues, setInitValues] = useState<CreateUser>({
+    address: "",
+    full_name: "",
+    email: "",
+    phone_number: "",
+    username: "",
+  });
+
+  return (
+    <Provider>
+      <SafeAreaView className="h-full bg-white">
+        <AppBar
+          title="Edit profile"
+          childLeft={
+            <TouchableOpacity onPress={() => router.back()}>
+              <Feather name="chevron-left" size={28} color="black" />
             </TouchableOpacity>
+          }
+        />
+
+        <ScrollView className="mt-4">
+          <View className="items-center">
+            <Menu
+              visible={isModalVisible}
+              onDismiss={() => setModalVisible(false)}
+              anchor={
+                <View className="relative">
+                  <View className="h-36 w-36 items-center justify-center rounded-full bg-gray-200">
+                    <FontAwesome name="user" size={60} color="gray" />
+                  </View>
+                  <TouchableOpacity
+                    className="absolute bottom-0 right-0 h-12 w-12 items-center justify-center rounded-full bg-primaryColor"
+                    onPress={toggleModal}
+                  >
+                    <AntDesign name="camera" size={24} color="white" />
+                  </TouchableOpacity>
+                </View>
+              }
+              contentStyle={{
+                backgroundColor: "#fff",
+              }}
+              anchorPosition="bottom"
+            >
+              <Menu.Item
+                onPress={() => {
+                  takePhoto();
+                }}
+                title="Camera"
+                leadingIcon={() => (
+                  <MaterialCommunityIcons
+                    name="camera"
+                    size={24}
+                    color="#000"
+                  />
+                )}
+                titleStyle={{ fontFamily: "Inter-Medium" }}
+              />
+              <Menu.Item
+                onPress={() => {
+                  choosePhoto();
+                }}
+                title="Library"
+                leadingIcon={() => (
+                  <MaterialCommunityIcons name="image" size={24} color="#000" />
+                )}
+                titleStyle={{ fontFamily: "Inter-Medium" }}
+              />
+            </Menu>
           </View>
 
-          <Modal
-            transparent={true}
-            visible={isModalVisible}
-            onRequestClose={toggleModal}
-            animationType="fade"
-          >
-            <TouchableOpacity style={{ flex: 1 }} onPress={toggleModal} />
-            <View className="absolute right-[16] top-[150] w-6/12 rounded-lg border-[1px] border-gray-200 bg-white">
-              <TouchableOpacity
-                onPress={choosePhoto}
-                className="border-b-[1px] border-t-[1px] border-gray-300 p-2 pl-6"
-              >
-                <Text className="font-InterMedium">Choose Photo</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={takePhoto} className="p-2 pl-6">
-                <Text className="font-InterMedium">Take Photo</Text>
-              </TouchableOpacity>
-            </View>
-          </Modal>
-        </View>
+          <View className="mt-2">
+            <Form<CreateUser>
+              formFields={formFields}
+              initValues={initValues}
+              onChange={(field, value) => {
+                setInitValues({
+                  ...initValues,
+                  [field]: value,
+                });
+              }}
+            />
+          </View>
 
-        <View className="mt-2">
-          <TextField label="Username" wrapperStyle="mb-4" />
-          <TextField label="Email" wrapperStyle="mb-4" />
-          <TextField label="Phone Number" wrapperStyle="mb-4" />
-          <TextField label="Gender" wrapperStyle="mb-4" />
-          <TextField label="Address" wrapperStyle="mb-4" />
-        </View>
-
-        <View className="mt-4">
-          <Button title="Save" onPress={onSave} />
-          <Button
-            title="Cancel"
-            onPress={onCancel}
-            className="my-4 border border-primaryColor bg-white"
-            textStyle="text-primaryColor"
-          />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+          <View className="mx-auto mt-4 w-11/12">
+            <Button title="Save" onPress={onSave} />
+            <Button
+              title="Cancel"
+              onPress={onCancel}
+              className="my-4 border border-primaryColor bg-white"
+              textStyle="text-primaryColor"
+            />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </Provider>
   );
 };
 

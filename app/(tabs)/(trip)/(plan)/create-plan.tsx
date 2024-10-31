@@ -25,33 +25,32 @@ const CreatePlanScreen = () => {
 
   return (
     <SafeAreaView className="h-full bg-white">
-      <View className="flex h-full w-full items-center">
-        <AppBar
-          title={planItem.name}
-          childLeft={
-            <TouchableOpacity onPress={() => router.back()}>
-              <Text className="ml-1.5 text-left font-InterMedium">Cancel</Text>
-            </TouchableOpacity>
-          }
-          childRight={
-            <TouchableOpacity onPress={onSave}>
-              <Text className="mr-1.5 text-right font-InterMedium">Save</Text>
-            </TouchableOpacity>
-          }
+      <AppBar
+        title={planItem.name}
+        childLeft={
+          <TouchableOpacity onPress={() => router.back()}>
+            <Text className="ml-1.5 text-left font-InterMedium">Cancel</Text>
+          </TouchableOpacity>
+        }
+        childRight={
+          <TouchableOpacity onPress={onSave}>
+            <Text className="mr-1.5 text-right font-InterMedium">Save</Text>
+          </TouchableOpacity>
+        }
+      />
+
+      <ScrollView className="mb-2 mt-4 w-full">
+        <Form<CreatePlan>
+          initValues={initValues}
+          formFields={formFields}
+          onChange={(field, value) => {
+            setInitValues({
+              ...initValues,
+              [field]: value,
+            });
+          }}
         />
-        <ScrollView className="mb-2 w-full">
-          <Form<CreatePlan>
-            initValues={initValues}
-            formFields={formFields}
-            onChange={(field, value) => {
-              setInitValues({
-                ...initValues,
-                [field]: value,
-              });
-            }}
-          />
-        </ScrollView>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

@@ -86,6 +86,13 @@ declare interface Trip {
   plans: Plan[];
 }
 
+declare interface CreateTrip {
+  name: string;
+  image_url: string;
+  start_date: string;
+  end_date: string;
+}
+
 declare type PlanType =
   | "lodging"
   | "flight"
@@ -106,4 +113,18 @@ declare interface CollectImages {
   trip_id: string;
   plan_id: string;
   imageUrls: string[];
+}
+
+declare interface CreateUser {
+  username: string;
+  full_name: string;
+  email: string;
+  phone_number: string;
+  address: string;
+}
+
+declare interface ChangePassword {
+  old_password: string;
+  new_password: string;
+  confirm_password: string;
 }

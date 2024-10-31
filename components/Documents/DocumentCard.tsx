@@ -48,7 +48,7 @@ const DocumentCard = (props: DocumentData) => {
   };
 
   return (
-    <View className="m-2 w-5/12 rounded-lg border border-neutral-300 px-2">
+    <View className="my-2 w-6/12 rounded-lg p-2">
       <View className="items-end">
         <Menu
           visible={visible}
@@ -60,6 +60,7 @@ const DocumentCard = (props: DocumentData) => {
           }
           anchorPosition="bottom"
           mode="elevated"
+          contentStyle={{ backgroundColor: "#ffffff" }}
         >
           <Menu.Item
             titleStyle={{ fontFamily: "Inter-Medium" }}

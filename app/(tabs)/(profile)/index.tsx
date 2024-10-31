@@ -2,7 +2,14 @@ import AppBar from "@/components/AppBar";
 import Button from "@/components/Button";
 import { AntDesign, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+  Alert,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const ProfileScreen = () => {
@@ -13,7 +20,21 @@ const ProfileScreen = () => {
   };
 
   const signOut = () => {
-    //
+    Alert.alert(
+      "Sign Out of App",
+      "Are you sure that you would like to sign out?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        {
+          text: "Sign out",
+          onPress: () => console.log("Sign out Pressed"),
+        },
+      ],
+    );
   };
 
   return (
@@ -46,7 +67,7 @@ const ProfileScreen = () => {
             <TouchableOpacity
               className="flex-row items-center justify-between border-t border-neutral-200 p-4"
               onPress={() => {
-                router.push("/(tabs)/(profile)/(document)/verify");
+                router.push("/(tabs)/(profile)/(document)/document");
               }}
             >
               <View className="flex-row items-center">

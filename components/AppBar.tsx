@@ -11,9 +11,7 @@ const AppBar = ({ title, childLeft, childRight }: AppBarProps) => {
   return (
     <View className="mx-auto w-11/12 flex-row items-center">
       <View className="w-3/12">{childLeft && childLeft}</View>
-      <Text className="w-6/12 text-center font-InterBold text-2xl">
-        {title}
-      </Text>
+      <Text className="w-6/12 text-center font-InterBold text-xl">{title}</Text>
       <View className="w-3/12">{childRight && childRight}</View>
     </View>
   );

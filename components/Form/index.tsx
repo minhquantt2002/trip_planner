@@ -5,11 +5,12 @@ import { useState } from "react";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import DatePicker from "./Field/DatePicker";
 import { datetimeToDay, datetimeToTime } from "@/utils/datetime";
+import ImageCoverField from "./Field/ImageCoverField";
 
 export interface FormField<T> {
   id: Extract<keyof T, string>;
   title: string;
-  type: "date" | "time" | "text" | "number" | "title";
+  type: "date" | "time" | "text" | "number" | "title" | "image-cover";
   hasMinimumDate?: Extract<keyof T, string>;
   xs: number;
 }
@@ -26,7 +27,7 @@ const Form = <T extends {}>({
   const [isVisiblePicker, setIsVisiblePicker] = useState<string>("");
 
   return (
-    <View className="mx-auto w-11/12 flex-row flex-wrap">
+    <View className="mx-auto w-[95%] flex-row flex-wrap">
       {formFields.map((field, index) => {
         const width =
           field.xs < 12
@@ -38,7 +39,9 @@ const Form = <T extends {}>({
         let item;
         if (field.type === "title") {
           item = (
-            <Text className="font-InterSemiBold text-lg">{field.title}</Text>
+            <View className="mt-3 bg-neutral-300 pb-1 pl-3 pt-1">
+              <Text className="font-InterSemiBold text-lg">{field.title}</Text>
+            </View>
           );
         } else if (field.type === "time") {
           item = (
@@ -94,6 +97,11 @@ const Form = <T extends {}>({
                 date={String(initValues[field.id])}
                 handleCancel={() => setIsVisiblePicker("")}
                 isVisible={isVisiblePicker === field.id + index}
+                minimumDate={
+                  field.hasMinimumDate
+                    ? String(initValues[field.hasMinimumDate])
+                    : undefined
+                }
                 handleConfirm={(value) => {
                   setIsVisiblePicker("");
                   onChange(field.id, value);
@@ -101,11 +109,13 @@ const Form = <T extends {}>({
               />
             </>
           );
+        } else if (field.type === "image-cover") {
+          item = <ImageCoverField />;
         } else {
           item = (
             <TextField
               label={field.title}
-              placeholder={"Enter " + field.title}
+              placeholder={"Enter " + field.title.toLocaleLowerCase()}
               labelStyle="text-gray-600"
               value={String(initValues[field.id])}
               onChangeText={(value) => {

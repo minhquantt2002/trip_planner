@@ -40,7 +40,7 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="(alert)"
+        name="(notification)"
         options={{
           title: "Alert",
           tabBarLabel: ({ children, focused }) => (

@@ -56,7 +56,7 @@ const AddDocumentScreen = () => {
 
       <ScrollView>
         <View className="flex w-full items-center">
-          <View className="mt-2 w-11/12">
+          <View className="mt-4 w-11/12">
             <TextField
               label="Document name"
               value={documentName}

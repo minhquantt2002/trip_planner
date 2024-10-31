@@ -3,7 +3,7 @@ import TripTypeTab from "@/components/Trip/TripTypeTab";
 import TripCard from "@/components/Trip/TripCard";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { trips } from "@/constants/trips";
 

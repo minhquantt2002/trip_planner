@@ -17,7 +17,8 @@ const SelectPlanScreen = () => {
             </TouchableOpacity>
           }
         />
-        <ScrollView className="my-2 w-full">
+
+        <ScrollView className="mb-2 mt-4 w-full">
           <View className="flex-col">
             {Object.entries(planTypes).map(([key, item], index) => (
               <TouchableOpacity
@@ -32,11 +33,13 @@ const SelectPlanScreen = () => {
                   });
                 }}
               >
-                <View className="w-11/12 flex-row items-center space-x-3 py-1.5">
-                  <View className="flex h-9 w-9 items-center justify-center rounded-full bg-primaryColor">
+                <View className="w-11/12 flex-row items-center py-1.5">
+                  <View className="flex h-10 w-10 items-center justify-center rounded-full bg-primaryColor">
                     {item.icon}
                   </View>
-                  <Text className="font-InterMedium text-lg">{item.name}</Text>
+                  <Text className="ml-3 font-InterMedium text-lg">
+                    {item.name}
+                  </Text>
                 </View>
               </TouchableOpacity>
             ))}
